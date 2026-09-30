@@ -158,7 +158,7 @@ function renderSidebar(){
 }
 function renderDashboard(){
   const m=todayMinutes(),pct=Math.min(100,Math.round(m/state.settings.dailyMinutes*100)),q=totalQuestions(),d=dueReviews();
-  document.getElementById('heroPct').textContent=pct+'%';document.getElementById('heroRing').style.background='conic-gradient(#69a8ff '+pct*3.6+'deg,#ffffff1f '+pct*3.6+'deg)';
+  document.getElementById('heroPct').textContent=pct+'%';const heroBar=document.getElementById('heroProgressBar');if(heroBar)heroBar.style.width=pct+'%';const heroCaption=document.getElementById('heroGoalCaption');if(heroCaption)heroCaption.textContent=fmtMin(m)+' de estudo';
   document.getElementById('heroTitle').textContent=m>=state.settings.dailyMinutes?'Meta do dia batida!':'Bora estudar?';document.getElementById('heroText').textContent=m?'Você já estudou '+fmtMin(m)+' hoje. Mais um bloco e você avança.':'Escolha uma matéria e comece.';
   document.getElementById('metricMinutes').textContent=fmtHours(m/60);document.getElementById('metricQuestions').textContent=q.total;document.getElementById('metricAccuracy').textContent=accuracy(q.total,q.correct)+'%';document.getElementById('metricReviews').textContent=d.length;document.getElementById('metricStreak').textContent=streak()+' dias';
   const best=state.cycle.slice().sort(function(a,b){return b.priority-a.priority}).slice(0,4);
