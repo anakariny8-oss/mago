@@ -1,6 +1,6 @@
-# Deltinha Study Tracker
+# Mago — seu espaço de estudo
 
-Primeira versão do painel de acompanhamento de estudos.
+Um painel pessoal, leve e responsivo para planejar, focar e acompanhar seus estudos.
 
 ## Funcionalidades
 
@@ -8,7 +8,7 @@ Primeira versão do painel de acompanhamento de estudos.
 - Metas com conclusão e exclusão.
 - Cadastro de matérias.
 - Registro manual de sessões.
-- Cronômetro de foco com presets de 25, 50 e 90 minutos.
+- Cronômetro de foco por matéria com presets de 25, 50 e 90 minutos.
 - Histórico de sessões.
 - Streak baseado nos dias com sessões registradas.
 - Gráfico dos últimos 7 dias.

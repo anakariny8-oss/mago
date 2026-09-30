@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#111827">
-  <title>Deltinha — Study Tracker</title>
-  <meta name="description" content="Painel pessoal para acompanhar estudos, metas, sessões e progresso.">
+  <meta name="theme-color" content="#15122b">
+  <title>Mago — seu espaço de estudo</title>
+  <meta name="description" content="Um espaço pessoal para planejar, focar e acompanhar seus estudos.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" aria-label="Navegação principal">
       <div class="brand">
-        <div class="brand-mark">δ</div>
+        <div class="brand-mark">✦</div>
         <div>
-          <strong>Deltinha</strong>
-          <span>Study Tracker</span>
+          <strong>Mago</strong>
+          <span>seu espaço de estudo</span>
         </div>
       </div>
 
@@ -28,11 +28,11 @@
 
       <div class="sidebar-bottom">
         <div class="mini-card">
-          <span class="eyebrow">Foco de hoje</span>
-          <strong id="sidebarFocus">Comece uma sessão</strong>
-          <small id="sidebarFocusMeta">Seu progresso aparece aqui.</small>
+          <span class="eyebrow">Ritual de hoje</span>
+          <strong id="sidebarFocus">Comece com intenção</strong>
+          <small id="sidebarFocusMeta">Uma pequena sessão já conta.</small>
         </div>
-        <button class="settings-button" id="resetDataButton">↺ Restaurar dados de exemplo</button>
+        <button class="settings-button" id="resetDataButton">↺ Restaurar exemplo</button>
       </div>
     </aside>
 
@@ -52,9 +52,9 @@
         <div class="hero-grid">
           <article class="hero-card">
             <div>
-              <span class="eyebrow">Seu ritmo</span>
-              <h2>Constância vence intensidade.</h2>
-              <p id="heroMessage">Registre uma sessão e veja o painel ganhar vida.</p>
+              <span class="eyebrow">Hoje no Mago</span>
+              <h2>Seu estudo, do seu jeito.</h2>
+              <p id="heroMessage">Escolha uma intenção, entre em foco e deixe o Mago cuidar do progresso.</p>
             </div>
             <div class="hero-ring" id="todayRing">
               <strong id="todayPercent">0%</strong>
@@ -141,7 +141,10 @@
         <div class="session-layout">
           <section class="panel timer-panel">
             <span class="eyebrow">Cronômetro</span>
-            <h3 id="timerSubject">Escolha uma matéria</h3>
+            <label class="timer-subject-label" for="timerSubject">Matéria em foco</label>
+            <select id="timerSubject" class="timer-subject">
+              <option value="">Escolha uma matéria</option>
+            </select>
             <div class="timer-display" id="timerDisplay">25:00</div>
             <div class="timer-controls">
               <button class="secondary-button" id="timerReset">Resetar</button>
@@ -186,7 +189,7 @@
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal-heading">
         <div>
-          <span class="eyebrow">Deltinha</span>
+          <span class="eyebrow">Mago</span>
           <h2 id="modalTitle">Nova sessão</h2>
         </div>
         <button class="icon-button" id="modalClose" aria-label="Fechar">×</button>
