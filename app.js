@@ -1,4 +1,4 @@
-const STORAGE_KEY = "deltinha-study-v1";
+const STORAGE_KEY = "mago-study-v1";
 
 const seed = {
   subjects: [
@@ -24,6 +24,7 @@ let state = loadState();
 let currentView = "dashboard";
 let modalType = null;
 let timerSeconds = 25 * 60;
+let timerDurationSeconds = 25 * 60;
 let timerRunning = false;
 let timerInterval = null;
 
@@ -97,6 +98,7 @@ function render() {
   renderSubjects();
   renderSessions();
   renderGoals();
+  refreshTimerSubjects();
   applyTheme();
 }
 function renderHeader() {
@@ -120,9 +122,9 @@ function renderDashboard() {
   const today = getTodayMinutes();
   document.getElementById("heroMessage").textContent = today
     ? `Você já acumulou ${formatMinutes(today)} de foco hoje. Continue no seu ritmo.`
-    : "Registre uma sessão e veja o painel ganhar vida.";
-  document.getElementById("sidebarFocus").textContent = today ? `${formatMinutes(today)} estudados hoje` : "Comece uma sessão";
-  document.getElementById("sidebarFocusMeta").textContent = today ? `${getStreak()} dia(s) de constância` : "Seu progresso aparece aqui.";
+    : "Defina uma meta pequena e faça o primeiro bloco de foco.";
+  document.getElementById("sidebarFocus").textContent = today ? `${formatMinutes(today)} de foco` : "Comece com intenção";
+  document.getElementById("sidebarFocusMeta").textContent = today ? `${getStreak()} dia(s) cultivando constância` : "Uma pequena sessão já conta.";
 
   document.getElementById("todayGoals").innerHTML = todayGoals.length
     ? todayGoals.map(goalHTML).join("")
@@ -233,6 +235,7 @@ function closeModal() {
   modalType = null;
 }
 function addSession(subject, minutes) {
+  if (!subject || subject === "Escolha uma matéria") return;
   state.sessions.push({ id: crypto.randomUUID(), subject, minutes, date: todayKey(), createdAt: Date.now() });
   saveState(); render();
 }
@@ -247,6 +250,10 @@ function stopTimer() {
   document.getElementById("timerToggle").textContent = "Começar";
 }
 function startTimer() {
+  if (!timerRunning && !subjectForTimer.value) {
+    subjectForTimer.focus();
+    return;
+  }
   if (timerRunning) {
     stopTimer();
     return;
@@ -256,8 +263,8 @@ function startTimer() {
   timerInterval = setInterval(() => {
     if (timerSeconds <= 0) {
       stopTimer();
-      addSession(document.getElementById("timerSubject").textContent, 25);
-      timerSeconds = 25 * 60;
+      addSession(subjectForTimer.value, Math.max(1, Math.round(timerDurationSeconds / 60)));
+      timerSeconds = timerDurationSeconds;
       updateTimerDisplay();
       alert("Sessão concluída e registrada!");
       return;
@@ -293,6 +300,7 @@ document.addEventListener("click", event => {
   if (preset) {
     stopTimer();
     timerSeconds = Number(preset.dataset.minutes) * 60;
+    timerDurationSeconds = timerSeconds;
     updateTimerDisplay();
   }
 });
@@ -346,31 +354,23 @@ document.getElementById("modalForm").addEventListener("submit", event => {
 });
 document.getElementById("timerToggle").addEventListener("click", startTimer);
 document.getElementById("timerReset").addEventListener("click", () => {
-  stopTimer(); timerSeconds = 25 * 60; updateTimerDisplay();
+  stopTimer(); timerDurationSeconds = 25 * 60; timerSeconds = timerDurationSeconds; updateTimerDisplay();
 });
 document.getElementById("timerFinish").addEventListener("click", () => {
   stopTimer();
-  const elapsed = Math.max(1, Math.round((25 * 60 - timerSeconds) / 60));
-  const subject = subjectForTimer.value || "Escolha uma matéria";
-  if (subject !== "Escolha uma matéria" && elapsed > 0) addSession(subject, elapsed);
-  timerSeconds = 25 * 60; updateTimerDisplay();
+  const elapsedSeconds = timerDurationSeconds - timerSeconds;
+  const elapsed = Math.max(1, Math.round(elapsedSeconds / 60));
+  const subject = subjectForTimer.value;
+  if (subject && elapsedSeconds > 0) addSession(subject, elapsed);
+  timerDurationSeconds = 25 * 60; timerSeconds = timerDurationSeconds; updateTimerDisplay();
 });
-document.getElementById("timerSubject").addEventListener?.("click", () => {});
-
-const subjectForTimer = document.createElement("select");
-subjectForTimer.id = "timerSubjectSelect";
-subjectForTimer.setAttribute("aria-label", "Matéria do cronômetro");
-subjectForTimer.style.cssText = "width:100%;margin-top:12px;padding:10px;border:1px solid var(--line);border-radius:11px;background:var(--surface);color:var(--text);";
-document.querySelector(".timer-panel h3").replaceWith(subjectForTimer);
+const subjectForTimer = document.getElementById("timerSubject");
 function refreshTimerSubjects() {
+  const selected = subjectForTimer.value;
   subjectForTimer.innerHTML = `<option value="">Escolha uma matéria</option>${state.subjects.map(s => `<option>${escapeHTML(s.name)}</option>`).join("")}`;
+  subjectForTimer.value = state.subjects.some(s => s.name === selected) ? selected : "";
 }
-subjectForTimer.addEventListener("change", () => {
-  document.getElementById("timerSubject").textContent = subjectForTimer.value || "Escolha uma matéria";
-});
+
 
 render();
-refreshTimerSubjects();
 updateTimerDisplay();
-
-refreshTimerSubjects();
