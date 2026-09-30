@@ -32,8 +32,9 @@
     </nav>
 
     <div class="sidebar-footer">
+      <div class="mage-profile"><div class="avatar-rune">✦</div><div><strong>Aprendiz Arcana</strong><span>Nível <b id="sideLevel">1</b> · <span id="sideXp">0 XP</span></span></div></div>
       <div class="sidebar-focus">
-        <div class="sidebar-focus-top"><span>FOCO DE HOJE</span><strong id="sideMinutes">0min</strong></div>
+        <div class="sidebar-focus-top"><span>✦ MANA DE FOCO</span><strong id="sideMinutes">0min</strong></div>
         <div class="progress-track small"><span id="sideProgress"></span></div>
         <div class="sidebar-focus-bottom"><span>meta diária</span><b id="sideGoal">2h</b></div>
       </div>
@@ -60,15 +61,22 @@
     <section class="page active" id="dashboardPage">
       <div class="hero">
         <div class="hero-copy">
-          <span class="eyebrow light">PAINEL DE ESTUDOS</span>
-          <h2 id="heroTitle">Bora estudar?</h2>
-          <p id="heroText">Seu próximo passo está a poucos cliques.</p>
+          <div class="hero-kicker"><span class="rune">✦</span><span class="eyebrow light">TORRE DO MAGO</span></div>
+          <h2 id="heroTitle">Seu grimório está aberto.</h2>
+          <p id="heroText">Cada sessão de estudo gera XP, fortalece suas matérias e desbloqueia novos níveis.</p>
           <div class="hero-actions">
             <button class="hero-primary" data-action="focus">▶ Começar bloco</button>
             <button class="hero-secondary" data-view-target="today">Abrir meu dia →</button>
           </div>
         </div>
         <div class="hero-ring" id="heroRing"><div><strong id="heroPct">0%</strong><span>meta do dia</span></div></div>
+      </div>
+
+      <div class="rpg-strip">
+        <article class="rpg-card"><div class="rpg-card-icon">✦</div><div><span>RANK</span><strong id="rankName">Aprendiz</strong><small id="rankText">Continue acumulando XP</small></div></article>
+        <article class="rpg-card xp-card"><div class="xp-head"><span>EXPERIÊNCIA</span><b id="xpText">0 / 500 XP</b></div><div class="xp-track"><span id="xpBar"></span></div><small id="xpNext">500 XP para o próximo nível</small></article>
+        <article class="rpg-card mana-card"><div class="rpg-card-icon">◈</div><div><span>MANA</span><strong id="manaText">100%</strong><small>energia de foco disponível</small></div></article>
+        <article class="rpg-card quest-card"><div class="rpg-card-icon">⚔</div><div><span>MISSÃO DIÁRIA</span><strong id="questText">0 / 2h</strong><small id="questSub">complete sua meta</small></div></article>
       </div>
 
       <div class="metric-grid">
@@ -98,6 +106,11 @@
           <div class="section-head"><div><span class="eyebrow">PONTOS DE ATENÇÃO</span><h3>Onde vale insistir</h3></div><button class="text-btn" data-view-target="performance">Ver análise</button></div>
           <div id="attentionList"></div>
         </section>
+      </div>
+
+      <div class="grid-2">
+        <section class="card quest-panel"><div class="section-head"><div><span class="eyebrow">QUEST BOARD</span><h3>Missões do dia</h3></div><span class="quest-gem">◆</span></div><div id="questBoard"></div></section>
+        <section class="card quest-panel"><div class="section-head"><div><span class="eyebrow">CONQUISTAS</span><h3>Relíquias desbloqueadas</h3></div><button class="text-btn" data-view-target="performance">Ver progresso</button></div><div id="achievementBoard" class="achievement-board"></div></section>
       </div>
 
       <section class="card">
