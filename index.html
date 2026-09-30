@@ -179,7 +179,7 @@
     </section>
 
     <section class="page" id="todayPage">
-      <div class="page-header"><div><span class="eyebrow">PLANO DO DIA</span><h2>Hoje</h2><p>Escolha o próximo bloco e comece.</p></div><button class="primary-btn" data-action="focus">▶ Começar</button></div>
+      <div class="page-header"><div><span class="eyebrow">PLANO DO DIA</span><p>Escolha o próximo bloco e comece.</p></div><button class="primary-btn" data-action="focus">▶ Começar</button></div>
 
       <div class="today-top-grid">
         <section class="card goal-card">
@@ -210,14 +210,14 @@
     </section>
 
     <section class="page" id="editalPage">
-      <div class="page-header"><div><span class="eyebrow">EDITAL VERTICALIZADO</span><h2>Meu edital</h2><p>Acompanhe cada assunto do seu edital.</p></div><div class="button-row"><button class="outline-btn" data-action="import">⇩ Importar</button><button class="primary-btn" data-action="topic">＋ Adicionar</button></div></div>
+      <div class="page-header"><div><span class="eyebrow">EDITAL VERTICALIZADO</span><p>Acompanhe cada assunto do seu edital.</p></div><div class="button-row"><button class="outline-btn" data-action="import">⇩ Importar</button><button class="primary-btn" data-action="topic">＋ Adicionar</button></div></div>
       <div class="summary-strip" id="editalSummary"></div>
       <div class="toolbar card"><div class="search-field">⌕<input id="topicSearch" placeholder="Buscar assunto ou matéria..."></div><select id="topicSubjectFilter"><option value="">Todas as matérias</option></select><select id="topicStatusFilter"><option value="">Todos os status</option><option value="nao-iniciado">Não iniciado</option><option value="andamento">Em andamento</option><option value="concluido">Concluído</option><option value="revisar">Revisar</option></select></div>
       <div class="edital-sections" id="editalSections"></div>
     </section>
 
     <section class="page" id="questionsPage">
-      <div class="page-header"><div><span class="eyebrow">BANCO DE QUESTÕES</span><h2>Questões</h2><p>Registre seus blocos e transforme erro em diagnóstico.</p></div><button class="primary-btn" data-action="questions">＋ Registrar bloco</button></div>
+      <div class="page-header"><div><span class="eyebrow">BANCO DE QUESTÕES</span><p>Registre seus blocos e transforme erro em diagnóstico.</p></div><button class="primary-btn" data-action="questions">＋ Registrar bloco</button></div>
       <div class="metric-grid three">
         <article class="big-metric"><span>Resolvidas</span><strong id="questionTotal">0</strong></article>
         <article class="big-metric"><span>Acertos</span><strong id="questionCorrect">0</strong></article>
@@ -231,19 +231,19 @@
     </section>
 
     <section class="page" id="reviewsPage">
-      <div class="page-header"><div><span class="eyebrow">REVISÃO ESPAÇADA</span><h2>Revisões</h2><p>Veja o que revisar agora.</p></div><button class="outline-btn" data-action="review">＋ Agendar</button></div>
+      <div class="page-header"><div><span class="eyebrow">REVISÃO ESPAÇADA</span><p>Veja o que revisar agora.</p></div><button class="outline-btn" data-action="review">＋ Agendar</button></div>
       <div class="review-tabs"><button class="review-tab active" data-review-tab="all">Todas</button><button class="review-tab" data-review-tab="today">Hoje</button><button class="review-tab" data-review-tab="overdue">Atrasadas</button><button class="review-tab" data-review-tab="future">Próximas</button></div>
       <div class="review-grid" id="reviewGrid"></div>
     </section>
 
     <section class="page" id="cyclePage">
-      <div class="page-header"><div><span class="eyebrow">CICLO DE ESTUDOS</span><h2>Meu ciclo</h2><p>Distribua suas horas entre as matérias.</p></div><div class="button-row"><button class="outline-btn" data-action="auto-cycle">✦ Auto-organizar</button><button class="primary-btn" data-action="cycle">＋ Matéria</button></div></div>
+      <div class="page-header"><div><span class="eyebrow">CICLO DE ESTUDOS</span><p>Distribua suas horas entre as matérias.</p></div><div class="button-row"><button class="outline-btn" data-action="auto-cycle">✦ Auto-organizar</button><button class="primary-btn" data-action="cycle">＋ Matéria</button></div></div>
       <div class="cycle-overview card"><div><span class="eyebrow">HORAS</span><strong id="cycleHours">0h</strong><small>no ciclo</small></div><div><span class="eyebrow">ESTUDADO</span><strong id="cycleStudied">0h</strong><small>últimos 7 dias</small></div><div><span class="eyebrow">EDITAL</span><strong id="cycleCoverage">0%</strong><small>da semana</small></div></div>
       <section class="card"><div class="section-head"><div><span class="eyebrow">DISTRIBUIÇÃO</span><h3>Matérias</h3></div></div><div id="cycleList"></div></section>
     </section>
 
     <section class="page" id="performancePage">
-      <div class="page-header"><div><span class="eyebrow">ANÁLISE</span><h2>Desempenho</h2><p>Veja onde seu tempo e seus acertos estão.</p></div><button class="outline-btn" data-action="export">⇧ Exportar dados</button></div>
+      <div class="page-header"><div><span class="eyebrow">ANÁLISE</span><p>Veja onde seu tempo e seus acertos estão.</p></div><button class="outline-btn" data-action="export">⇧ Exportar dados</button></div>
       <div class="analytics-grid">
         <section class="card"><div class="section-head"><div><span class="eyebrow">TEMPO</span><h3>Tempo por matéria</h3></div></div><div id="timeBySubject"></div></section>
         <section class="card"><div class="section-head"><div><span class="eyebrow">COBERTURA</span><h3>Cobertura do edital</h3></div></div><div id="coverageBySubject"></div></section>
@@ -252,7 +252,7 @@
     </section>
 
     <section class="page" id="diaryPage">
-      <div class="page-header"><div><span class="eyebrow">DIÁRIO</span><h2>Diário de estudos</h2><p>Anote o que funcionou e o que precisa melhorar.</p></div></div>
+      <div class="page-header"><div><span class="eyebrow">DIÁRIO</span><p>Anote o que funcionou e o que precisa melhorar.</p></div></div>
       <div class="diary-layout">
         <form class="card diary-form" id="diaryForm"><div class="section-head"><div><span class="eyebrow">NOVA ENTRADA</span><h3>Como foi seu dia?</h3></div></div><label>Data<input id="diaryDate" type="date" required></label><label>Humor<select id="diaryMood"><option>😀</option><option>🙂</option><option>😐</option><option>😣</option></select></label><label>Escreva<textarea id="diaryText" rows="10" placeholder="Ex.: consegui avançar em..."></textarea></label><button class="primary-btn" type="submit">Salvar</button></form>
         <section class="card"><div class="section-head"><div><span class="eyebrow">HISTÓRICO</span><h3>Suas anotações</h3></div></div><div id="diaryEntries"></div></section>
