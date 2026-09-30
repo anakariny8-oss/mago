@@ -227,7 +227,7 @@
   function addSessionEnhanced(subject,topic,minutes,date){
     const mins=Number(minutes||0); if(!subject||mins<=0){toast('Informe matéria e um tempo válido.');return;}
     const day=/^\d{4}-\d{2}-\d{2}$/.test(date||'')?date:localToday();
-    state.sessions.push({id:uid(),subject,topic:topic||'Estudo livre',minutes:Math.round(mins),date:day,createdAt:Date.now()});
+    const session={id:uid(),subject,topic:topic||'Estudo livre',minutes:Math.round(mins),date:day,createdAt:Date.now()}; if(focusTimer?.scheduleId)session.scheduleId=focusTimer.scheduleId; state.sessions.push(session); if(focusTimer?.scheduleId){const sch=state.schedule.find(x=>x.id===focusTimer.scheduleId);if(sch)sch.status='done';focusTimer.scheduleId='';}
     save();render();toast('Estudo salvo no seu grimório.');
   }
   addSession=addSessionEnhanced;
@@ -441,6 +441,13 @@
   }
   renderReviews=renderReviewsEnhanced;
 
+
+  function renderStudyHistory(){
+    const root=q('#studyHistory');if(!root)return;
+    const rows=state.sessions.slice().sort((a,b)=>b.date.localeCompare(a.date)||Number(b.createdAt||0)-Number(a.createdAt||0)).slice(0,20);
+    root.innerHTML=rows.length?rows.map(s=>'<div class="study-history-row"><span class="history-date">'+esc(dateLabel(s.date))+'</span><div class="history-main"><strong>'+esc(s.subject)+'</strong><small>'+esc(s.topic||'Estudo livre')+'</small></div><b>'+fmtMin(s.minutes)+'</b><button data-edit-session="'+s.id+'">Editar</button><button data-del-session="'+s.id+'">Excluir</button></div>').join(''):'<div class="section-empty">Você ainda não registrou sessões.</div>';
+  }
+
   // Evento para o cronograma, sessões e matérias.
   document.addEventListener('click',e=>{
     const start=e.target.closest('[data-start-schedule]');
@@ -448,7 +455,7 @@
       const s=state.schedule.find(x=>x.id===start.dataset.startSchedule);
       if(s){
         navigate('today');
-        const fs=q('#focusSubject'), ft=q('#focusTopic');
+        const fs=q('#focusSubject'), ft=q('#focusTopic'); focusTimer.scheduleId=s.id;
         if(fs){fs.value=s.subject;}
         if(ft){ft.value=s.topic||'';}
         resetFocus(Number(s.minutes||state.settings.blockMinutes||50));
@@ -556,6 +563,14 @@
     };
     reader.readAsText(file);
   });
+
+
+  const legacyFullRender=render;
+  render=function(){
+    legacyFullRender();
+    renderStudyHistory();
+    renderScheduleBoard();
+  };
 
   // Novo botão de cronograma no cabeçalho da página Hoje, caso ainda não exista.
   const todayHead=document.querySelector('#todayPage .page-header .button-row')||document.querySelector('#todayPage .page-header > div:last-child');
