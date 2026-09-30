@@ -218,7 +218,7 @@
     if(status==='done' && s.status!=='done'){
       s.status='done';
       if(!state.sessions.some(x=>x.scheduleId===s.id)){
-        state.sessions.push({id:uid(),scheduleId:s.id,subject:s.subject,topic:s.topic||'Estudo livre',minutes:Number(s.minutes||block),date:s.date,createdAt:Date.now()});
+        state.sessions.push({id:uid(),scheduleId:s.id,subject:s.subject,topic:s.topic||'Estudo livre',minutes:Number(s.minutes||50),date:s.date,createdAt:Date.now()});
       }
     } else if(status) s.status=status;
     save();render();toast(status==='done'?'Bloco concluído e registrado.':'Bloco atualizado.');
@@ -443,6 +443,22 @@
 
   // Evento para o cronograma, sessões e matérias.
   document.addEventListener('click',e=>{
+    const start=e.target.closest('[data-start-schedule]');
+    if(start){
+      const s=state.schedule.find(x=>x.id===start.dataset.startSchedule);
+      if(s){
+        navigate('today');
+        const fs=q('#focusSubject'), ft=q('#focusTopic');
+        if(fs){fs.value=s.subject;}
+        if(ft){ft.value=s.topic||'';}
+        resetFocus(Number(s.minutes||state.settings.blockMinutes||50));
+        startFocus();
+        toast('Bloco iniciado. Foco no que importa agora.');
+      }
+      return;
+    }
+    const restore=e.target.closest('[data-action="restore"]');
+    if(restore){q('#restoreInput')?.click();return;}
     const done=e.target.closest('[data-schedule-done]');
     if(done){e.preventDefault();markSchedule(done.dataset.scheduleDone,'done');return;}
     const skip=e.target.closest('[data-schedule-skip]');
@@ -518,6 +534,27 @@
       state.settings.availableEnd=state.settings.availableEnd||'22:00';
       save();
     }
+  });
+
+  q('#restoreInput')?.addEventListener('change',e=>{
+    const file=e.target.files?.[0]; if(!file)return;
+    const reader=new FileReader();
+    reader.onload=()=>{
+      try{
+        const imported=JSON.parse(String(reader.result||''));
+        if(!imported || typeof imported!=='object' || !Array.isArray(imported.sessions) || !Array.isArray(imported.topics)){
+          throw new Error('backup inválido');
+        }
+        state=Object.assign(makeEnhancedSeed(),imported);
+        migrateState();
+        if(!Array.isArray(state.schedule))state.schedule=[];
+        if(!Array.isArray(state.reviewHistory))state.reviewHistory=[];
+        save(); render();
+        toast('Backup restaurado com sucesso.');
+      }catch(err){console.error(err);toast('Não foi possível restaurar esse backup.');}
+      e.target.value='';
+    };
+    reader.readAsText(file);
   });
 
   // Novo botão de cronograma no cabeçalho da página Hoje, caso ainda não exista.
