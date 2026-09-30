@@ -2176,3 +2176,63 @@ body:after{left:-220px;bottom:-150px;background:rgba(36,111,214,.09)}
 .nav-item .arcane-icon{width:18px;height:18px;display:block}
 .nav-item.active .arcane-icon{color:#b99aff;filter:drop-shadow(0 0 5px rgba(139,92,246,.35))}
 .nav-item:hover .arcane-icon{color:#c9b4ff}
+
+/* ===== Mago v5 — produtividade e TDAH ===== */
+.button-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.next-spell{display:flex;align-items:center;gap:13px;padding:15px;border:1px solid rgba(165,135,245,.22);border-radius:16px;background:linear-gradient(135deg,rgba(100,66,190,.15),rgba(35,85,165,.08))}
+.next-spell-rune{width:42px;height:42px;display:grid;place-items:center;flex:0 0 42px;border-radius:13px;color:#ffedaf;background:linear-gradient(145deg,#7e59e7,#38226f);box-shadow:0 0 22px rgba(139,92,246,.28)}
+.next-spell div{min-width:0;flex:1}
+.next-spell div>span{display:block;font-size:9px;letter-spacing:.05em;color:#a99ad0}
+.next-spell strong{display:block;font-size:14px;margin-top:3px;color:#f6f2ff}
+.next-spell small{display:block;font-size:10px;margin-top:4px;color:#9ca7bb}
+.schedule-card{overflow:hidden}
+.schedule-day{padding:4px 0 12px;border-bottom:1px solid rgba(150,137,191,.12)}
+.schedule-day:last-child{border-bottom:0;padding-bottom:0}
+.schedule-day-head{display:flex;justify-content:space-between;gap:10px;align-items:end;padding:7px 0 9px}
+.schedule-day-head strong{display:block;font-size:13px;text-transform:capitalize}
+.schedule-day-head span{display:block;color:#8f8da5;font-size:10px;margin-top:2px}
+.schedule-day-head>b{font-size:12px;color:#c1a6ff}
+.schedule-item{display:grid;grid-template-columns:58px minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:10px 0}
+.schedule-item.done{opacity:.67}
+.schedule-time{font-weight:800;color:#b997ff;font-size:11px}
+.schedule-main strong{display:block;font-size:12px}
+.schedule-main small{display:block;color:#8f8da5;font-size:10px;line-height:1.45;margin-top:2px}
+.schedule-state{font-size:9px;color:#aaa5b7;white-space:nowrap}
+.schedule-actions{display:flex;gap:5px}
+.schedule-actions button,.review-ratings button,.session-actions button,.subject-manage-row button{border:1px solid rgba(154,137,204,.16);background:rgba(31,34,53,.72);color:#bfaeff;border-radius:8px;padding:6px 8px;font-size:9px}
+.schedule-actions button:hover,.review-ratings button:hover,.session-actions button:hover,.subject-manage-row button:hover{border-color:rgba(182,147,255,.4)}
+.schedule-empty{padding:18px 0;color:#89879b;font-size:11px}
+.enhanced-session{grid-template-columns:auto minmax(0,1fr) auto auto}
+.session-actions{display:flex;gap:5px}
+.subject-manage-row{display:grid;grid-template-columns:10px minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid rgba(150,137,191,.12)}
+.subject-manage-row:last-child{border-bottom:0}
+.subject-manage-row .subject-color{width:9px;height:9px;border-radius:50%}
+.subject-manage-row strong{display:block;font-size:12px}
+.subject-manage-row small{display:block;font-size:10px;color:#8f8da5;margin-top:2px}
+.day-picker{margin-top:14px}
+.day-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.day-grid label{position:relative}
+.day-grid input{position:absolute;opacity:0}
+.day-grid span{display:grid;place-items:center;min-height:40px;border:1px solid rgba(154,137,204,.16);border-radius:10px;background:rgba(28,31,50,.65);font-size:10px;color:#9b98ab}
+.day-grid input:checked+span{background:rgba(121,80,216,.2);border-color:rgba(172,139,255,.38);color:#d3c2ff;box-shadow:0 0 14px rgba(128,82,224,.12)}
+.settings-tdah{margin-top:14px;padding:14px;border:1px solid rgba(166,140,238,.18);border-radius:13px;background:rgba(96,64,177,.09)}
+.settings-tdah strong{display:block;font-size:12px;color:#e8ddff}
+.settings-tdah label{display:flex;gap:8px;align-items:center;font-size:11px;color:#b2afc1;margin-top:7px}
+.settings-tdah p{margin:6px 0 0;color:#89879b;font-size:10px}
+.focus-hint{margin-top:12px;padding:11px 12px;border-radius:11px;background:rgba(109,74,210,.08);border:1px solid rgba(155,127,236,.12);font-size:10px;line-height:1.55;color:#aaa4ba}
+.review-ratings{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:760px){
+  .schedule-item{grid-template-columns:52px minmax(0,1fr);align-items:start}
+  .schedule-state{grid-column:2}
+  .schedule-actions{grid-column:2}
+  .enhanced-session{grid-template-columns:54px minmax(0,1fr);align-items:start}
+  .enhanced-session>strong{grid-column:2}
+  .session-actions{grid-column:2}
+  .review-ratings{justify-content:flex-start;margin-top:8px}
+  .day-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:430px){
+  .day-grid{grid-template-columns:repeat(2,1fr)}
+  .next-spell{align-items:flex-start;flex-wrap:wrap}
+  .next-spell .primary-btn{width:100%}
+}
