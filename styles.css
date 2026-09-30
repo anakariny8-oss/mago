@@ -1709,3 +1709,104 @@ body{
   .rpg-card strong{font-size:17px}
   .card{padding:20px}
 }
+
+
+/* ===== MODO LEITURA CONFORTÁVEL ===== */
+.eyebrow,
+.nav-group-title,
+.sidebar-focus-top span,
+.sidebar-focus-bottom span,
+.rpg-card span,
+.metric span,
+.big-metric span{
+  text-transform:none !important;
+  letter-spacing:.02em;
+}
+.priority,
+.cycle-overview small,
+.cycle-list-row button,
+.cycle-list-row span,
+.analytic-row strong,
+.analytic-row span,
+.field label,
+.hint,
+.form-grid label{
+  font-size:11px !important;
+  line-height:1.45;
+}
+.subject-card small,
+.subject-section-header small,
+.topic-main small,
+.tiny-stat,
+.rev-chip,
+.review-bottom small,
+.diary-entry-top small{
+  font-size:11px !important;
+  line-height:1.45;
+}
+.big-metric span,
+.question-by-subject-row strong,
+.question-by-subject-row>span,
+.error-top span,
+.error-row small,
+.question-history-row strong,
+.question-history-row span{
+  font-size:11px !important;
+  line-height:1.45;
+}
+.review-card p,
+.review-bottom button,
+.diary-form label,
+.diary-entry-top strong,
+.diary-entry p{
+  font-size:12px !important;
+  line-height:1.65;
+}
+.diary-form input,
+.diary-form select,
+.diary-form textarea,
+.field input,
+.field select,
+.field textarea,
+.hint{
+  font-size:13px !important;
+  line-height:1.5;
+}
+.toolbar select,
+.search-field input,
+.wide-select,
+.wide-input{
+  font-size:13px !important;
+}
+.data-table th{
+  font-size:10px !important;
+  letter-spacing:.03em;
+  text-transform:none !important;
+}
+.data-table td{
+  font-size:12px !important;
+  line-height:1.5;
+}
+.bar-col em,.bar-col label,
+.hero-progress span,.hero-progress small,
+.journey-legend,
+.quest-row small,
+.continue-footer small,
+.relic-card .achievement small{
+  font-size:10px !important;
+  line-height:1.45;
+}
+.journey-gate strong{font-size:9px}
+.journey-gate small{font-size:9px}
+.status-pill,.topic-status,.time-chip{
+  font-size:11px !important;
+}
+.text-btn{font-size:12px !important}
+button{line-height:1.25}
+.card{box-shadow:0 8px 28px rgba(15,23,42,.045)}
+@media(max-width:620px){
+  .eyebrow{font-size:10px !important}
+  .nav-item b{font-size:14px !important}
+  .page-header p{font-size:14px !important}
+  .data-table td{font-size:11px !important}
+}
