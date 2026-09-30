@@ -1810,3 +1810,351 @@ button{line-height:1.25}
   .page-header p{font-size:14px !important}
   .data-table td{font-size:11px !important}
 }
+
+
+
+/* =========================================================
+   MODO ARCANO — identidade visual do Mago
+   Camada visual: preserva todas as funções existentes.
+   ========================================================= */
+:root{
+  --arcane-void:#070912;
+  --arcane-night:#0b1020;
+  --arcane-blue:#3b82f6;
+  --arcane-blue-2:#69a7ff;
+  --arcane-violet:#8b5cf6;
+  --arcane-violet-2:#b28cff;
+  --arcane-gold:#e7bd67;
+  --arcane-gold-2:#fff0b8;
+  --arcane-line:rgba(159,141,224,.18);
+  --arcane-glass:rgba(14,18,36,.72);
+}
+
+/* Fundo noturno com profundidade */
+body{
+  background:
+    radial-gradient(900px 500px at 72% -10%,rgba(72,61,170,.20),transparent 65%),
+    radial-gradient(700px 480px at 18% 100%,rgba(32,91,177,.13),transparent 65%),
+    linear-gradient(135deg,#080b16 0%,#0c1222 48%,#080b15 100%);
+}
+body:before,body:after{
+  content:"";
+  position:fixed;
+  inset:auto;
+  width:420px;height:420px;border-radius:50%;
+  pointer-events:none;z-index:-1;
+  filter:blur(60px);
+}
+body:before{right:-180px;top:12%;background:rgba(109,72,226,.10)}
+body:after{left:-220px;bottom:-150px;background:rgba(36,111,214,.09)}
+
+.content{position:relative}
+.content:before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.18;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.7) 1px,transparent 1px),
+    radial-gradient(circle,rgba(183,151,255,.45) 1px,transparent 1px);
+  background-size:97px 97px,151px 151px;
+  background-position:12px 31px,73px 91px;
+}
+
+/* Sidebar como grimório */
+.sidebar{
+  width:274px;
+  background:
+    radial-gradient(circle at 40% 0%,rgba(116,82,225,.18),transparent 28%),
+    linear-gradient(180deg,#090d1b,#070a13 72%,#090b16);
+  border-right:1px solid rgba(161,139,245,.16);
+  box-shadow:18px 0 50px rgba(0,0,0,.20);
+}
+.brand-mark{
+  background:radial-gradient(circle at 35% 30%,#b995ff,#6d42d7 60%,#2a1d66);
+  border:1px solid rgba(255,232,163,.35);
+  box-shadow:0 0 25px rgba(120,78,235,.35),inset 0 0 18px rgba(255,255,255,.12);
+  border-radius:15px;
+}
+.brand strong{color:#f7f2ff}
+.brand span{color:#9d9ab5}
+.nav-group-title{color:#77718e}
+.nav-item{color:#aaa6bd}
+.nav-item:hover{background:rgba(139,92,246,.09);color:#fff}
+.nav-item.active{
+  background:linear-gradient(90deg,rgba(118,78,226,.22),rgba(45,91,170,.08));
+  box-shadow:inset 3px 0 #9c74ff,0 5px 22px rgba(72,43,145,.12);
+}
+.nav-item.active span{color:#c0a5ff}
+.sidebar-focus{
+  background:linear-gradient(145deg,rgba(28,24,54,.96),rgba(12,18,34,.96));
+  border-color:rgba(183,151,255,.14);
+  box-shadow:inset 0 1px rgba(255,255,255,.04),0 12px 30px rgba(0,0,0,.18);
+}
+.progress-track span{
+  background:linear-gradient(90deg,#477eff,#9c6cff,#e0b960);
+  box-shadow:0 0 12px rgba(139,92,246,.35);
+}
+
+/* Conteúdo / cards de grimório */
+.card,.metric{
+  background:
+    linear-gradient(145deg,rgba(21,25,45,.91),rgba(11,16,31,.91));
+  border-color:var(--arcane-line);
+  color:#eeeafd;
+  box-shadow:0 12px 40px rgba(0,0,0,.16),inset 0 1px rgba(255,255,255,.025);
+}
+.card:hover,.metric:hover{
+  border-color:rgba(158,125,244,.30);
+  box-shadow:0 18px 48px rgba(0,0,0,.22),0 0 28px rgba(109,76,220,.07);
+}
+.section-head h3,.metric strong,.row-main strong,.subject-card h4,
+.big-metric strong,.page-header h2,.topbar h1{color:#f5f1ff}
+.eyebrow,.section-note,.metric span,.metric small,.row-main small,
+.page-header p,.tiny-stat,.section-empty,.bar-col em,.bar-col label{color:#9b9ab0}
+
+/* Botões = feitiços */
+.primary-btn,.hero-primary{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#7c4de4,#4d2aa5);
+  border:1px solid rgba(211,190,255,.22);
+  color:#fff;
+  box-shadow:0 8px 25px rgba(91,50,183,.30),inset 0 1px rgba(255,255,255,.15);
+}
+.primary-btn:before,.hero-primary:before{
+  content:"✦";margin-right:7px;color:var(--arcane-gold-2);
+}
+.primary-btn:hover,.hero-primary:hover{
+  box-shadow:0 10px 30px rgba(113,68,226,.40),0 0 18px rgba(139,92,246,.18);
+}
+.outline-btn,.icon-btn{
+  background:rgba(20,24,43,.78);
+  border-color:rgba(156,142,204,.20);
+  color:#e9e5f5;
+}
+.outline-btn:hover,.icon-btn:hover{
+  border-color:rgba(174,143,255,.45);
+  box-shadow:0 0 18px rgba(124,83,220,.12);
+}
+.text-btn{color:#b796ff}
+
+/* Persona visual do Mago */
+.mage-hero{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(168,139,255,.24);
+  background:
+    radial-gradient(circle at 76% 50%,rgba(112,75,225,.22),transparent 22%),
+    radial-gradient(circle at 53% 110%,rgba(35,103,211,.18),transparent 35%),
+    linear-gradient(125deg,#0a0e1d,#111735 55%,#0b1021);
+  box-shadow:0 24px 70px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.05);
+}
+.mage-hero:after{
+  content:"M";
+  position:absolute;right:14%;top:50%;transform:translateY(-50%);
+  width:178px;height:178px;border-radius:50%;
+  display:grid;place-items:center;
+  font:800 86px/1 "Manrope",sans-serif;color:rgba(224,197,111,.09);
+  border:1px solid rgba(231,189,103,.14);
+  box-shadow:0 0 0 18px rgba(139,92,246,.035),0 0 70px rgba(139,92,246,.12);
+}
+.hero-copy{z-index:5}
+.mage-hero h2{text-shadow:0 4px 25px rgba(0,0,0,.30)}
+.mage-hero .hero-sigil{
+  color:var(--arcane-gold-2)!important;
+  text-shadow:0 0 25px rgba(231,189,103,.65);
+}
+
+/* Órbita mágica */
+.hero-orbit{filter:drop-shadow(0 0 15px rgba(137,92,246,.25))}
+.orb-core{
+  background:radial-gradient(circle,#f4d982 0%,#a36bf1 27%,#4d2b9e 58%,#12142a 72%)!important;
+  border-color:rgba(255,239,178,.55)!important;
+  box-shadow:0 0 35px rgba(151,93,246,.52),0 0 70px rgba(53,113,230,.18)!important;
+  animation:arcanePulse 3s ease-in-out infinite;
+}
+.orbit{border-color:rgba(174,145,255,.24)!important}
+.orbit-dot{background:#d9b65e!important;box-shadow:0 0 13px #e9c86e!important}
+
+/* Partículas sutis */
+.hero-stars i{
+  background:#e7d28d!important;
+  box-shadow:0 0 9px rgba(231,210,141,.75);
+  animation:twinkle 2.8s ease-in-out infinite;
+}
+.hero-stars i:nth-child(2){animation-delay:.5s}
+.hero-stars i:nth-child(3){animation-delay:1.1s}
+.hero-stars i:nth-child(4){animation-delay:1.7s}
+.hero-stars i:nth-child(5){animation-delay:2.1s}
+
+@keyframes arcanePulse{
+  0%,100%{transform:scale(1);box-shadow:0 0 28px rgba(151,93,246,.42),0 0 60px rgba(53,113,230,.15)}
+  50%{transform:scale(1.07);box-shadow:0 0 44px rgba(180,121,255,.62),0 0 90px rgba(53,113,230,.22)}
+}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:1;transform:scale(1.25)}}
+
+/* Jornada com aparência de mapa arcano */
+.journey-map,.journey-card{
+  background:
+    radial-gradient(circle at 80% 15%,rgba(124,82,224,.12),transparent 30%),
+    linear-gradient(145deg,#101528,#0b1020)!important;
+  border-color:rgba(155,127,236,.20)!important;
+}
+.journey-map:before{opacity:.18}
+.journey-nodes .subject-card{
+  background:linear-gradient(145deg,rgba(28,31,54,.90),rgba(13,18,34,.88));
+  border-color:rgba(158,137,217,.20);
+  box-shadow:0 10px 28px rgba(0,0,0,.18),inset 0 1px rgba(255,255,255,.03);
+}
+.journey-nodes .subject-card:hover{
+  border-color:rgba(182,147,255,.48);
+  box-shadow:0 16px 35px rgba(0,0,0,.25),0 0 25px rgba(112,73,215,.13);
+}
+.journey-treasure{
+  color:#ffe59a!important;background:rgba(110,76,210,.16)!important;
+  border-color:rgba(231,189,103,.35)!important;
+  box-shadow:0 0 24px rgba(231,189,103,.16)!important;
+}
+
+/* RPG strip = status arcano */
+.rpg-card{
+  background:linear-gradient(145deg,rgba(22,26,47,.95),rgba(10,14,28,.95));
+  border:1px solid rgba(155,131,219,.17);
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+  color:#eeeafd;
+}
+.rpg-card-icon{color:#e9d084!important;background:rgba(124,82,226,.15)!important}
+.xp-track{background:#1a1d32!important}
+.xp-track span{background:linear-gradient(90deg,#5e87ff,#9d68f2,#e2bd5c)!important;box-shadow:0 0 13px rgba(139,92,246,.4)}
+.mana-card{border-color:rgba(63,139,255,.20)}
+.quest-card{border-color:rgba(231,189,103,.20)}
+
+/* Campos */
+.wide-select,.wide-input,.toolbar select,.search-field,
+.diary-form input,.diary-form select,.diary-form textarea,
+.field input,.field select,.field textarea{
+  background:rgba(8,12,25,.72)!important;
+  color:#eeeafd!important;
+  border-color:rgba(155,137,205,.20)!important;
+}
+::placeholder{color:#6f7187!important}
+.wide-select:focus,.wide-input:focus,.search-field:focus-within,
+.diary-form input:focus,.diary-form select:focus,.diary-form textarea:focus{
+  border-color:rgba(158,121,255,.55)!important;
+  box-shadow:0 0 0 3px rgba(139,92,246,.10),0 0 20px rgba(111,74,219,.08);
+}
+
+/* Tabs / listas */
+.review-tab,.preset-row button,.summary-chip,.status-pill,.topic-status,.time-chip{
+  background:rgba(35,37,59,.72)!important;
+  border-color:rgba(154,139,201,.16)!important;
+  color:#b9b5ca!important;
+}
+.review-tab.active,.status-pill,.topic-status.andamento{
+  background:rgba(112,75,221,.18)!important;color:#c7afff!important;
+  border-color:rgba(164,128,250,.28)!important;
+}
+.schedule-row,.review-row,.session-row,.attention-row,.question-history-row,
+.cycle-list-row,.topic-row{border-color:rgba(150,137,191,.12)!important}
+
+/* Modal = ritual */
+.modal-backdrop{background:rgba(2,4,12,.78)!important;backdrop-filter:blur(9px)}
+.modal{
+  background:linear-gradient(145deg,#151a30,#090e1d)!important;
+  color:#f2effa;border-color:rgba(168,140,247,.25)!important;
+  box-shadow:0 35px 90px rgba(0,0,0,.45),0 0 40px rgba(103,66,206,.12)!important;
+}
+
+/* Chat sofisticado */
+.arcane-chat{position:fixed;right:24px;bottom:24px;z-index:120}
+.arcane-chat-toggle{
+  width:58px;height:58px;border-radius:20px;border:1px solid rgba(232,201,112,.42);
+  color:#fff1bb;background:radial-gradient(circle at 35% 25%,#a679ff,#522da7 58%,#211443);
+  box-shadow:0 12px 35px rgba(45,22,100,.45),0 0 28px rgba(139,92,246,.22);
+  font-size:24px;transition:.22s ease;
+}
+.arcane-chat-toggle:hover{transform:translateY(-3px) rotate(5deg);box-shadow:0 18px 45px rgba(45,22,100,.55),0 0 38px rgba(139,92,246,.32)}
+.arcane-chat-panel{
+  position:absolute;right:0;bottom:72px;width:360px;height:500px;
+  display:flex;flex-direction:column;overflow:hidden;
+  background:linear-gradient(145deg,rgba(17,21,40,.98),rgba(7,11,23,.99));
+  border:1px solid rgba(164,136,245,.25);border-radius:22px;
+  box-shadow:0 30px 80px rgba(0,0,0,.48),0 0 45px rgba(101,65,203,.13);
+  transform-origin:bottom right;animation:spellIn .22s ease;
+}
+.arcane-chat-panel[aria-hidden="true"]{display:none}
+@keyframes spellIn{from{opacity:0;transform:scale(.94) translateY(12px)}to{opacity:1;transform:none}}
+.arcane-chat-head{
+  display:flex;align-items:center;gap:10px;padding:15px 16px;
+  border-bottom:1px solid rgba(160,143,201,.13);
+  background:linear-gradient(90deg,rgba(105,69,202,.12),transparent);
+}
+.mage-mini{
+  width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
+  color:#ffedaf;background:linear-gradient(145deg,#8157e9,#37206f);
+  box-shadow:0 0 20px rgba(139,92,246,.30);
+}
+.arcane-chat-head strong{display:block;color:#f6f2ff;font-size:13px}
+.arcane-chat-head small{display:block;color:#8888a2;font-size:10px;margin-top:2px}
+.arcane-chat-close{margin-left:auto;border:0;background:transparent;color:#9694a9;font-size:22px}
+.arcane-chat-messages{flex:1;overflow:auto;padding:15px}
+.arcane-message{display:flex;gap:8px;margin-bottom:12px;animation:messageIn .28s ease}
+.arcane-message>span{flex:0 0 auto;color:#e5c96d;margin-top:3px}
+.arcane-message p{
+  margin:0;padding:10px 12px;border-radius:13px;max-width:88%;
+  font-size:12px;line-height:1.55;color:#ddd9e8;
+  background:rgba(32,35,57,.76);border:1px solid rgba(154,137,204,.12);
+}
+.arcane-message.user{justify-content:flex-end}
+.arcane-message.user>span{display:none}
+.arcane-message.user p{background:linear-gradient(135deg,#5f38b5,#39246f);color:#fff}
+@keyframes messageIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.arcane-quick{display:flex;gap:6px;padding:0 13px 10px;overflow:auto}
+.arcane-quick button{
+  flex:0 0 auto;border:1px solid rgba(154,137,204,.16);background:rgba(28,31,51,.75);
+  color:#bcaaf2;border-radius:999px;padding:7px 10px;font-size:10px;
+}
+.arcane-chat-form{display:flex;gap:7px;padding:12px;border-top:1px solid rgba(160,143,201,.13)}
+.arcane-chat-form input{
+  min-width:0;flex:1;border:1px solid rgba(154,137,204,.18);border-radius:11px;
+  background:#090d1a;color:#eeeafd;padding:10px;font-size:12px;
+}
+.arcane-chat-form button{
+  width:40px;border:0;border-radius:11px;color:#fff0bb;background:linear-gradient(145deg,#7950df,#42278c);
+}
+
+/* Conjuração durante respostas / ações */
+.spell-cast{position:fixed;inset:0;pointer-events:none;z-index:200}
+.spell-cast:before{
+  content:"✦";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.2);
+  color:#f4da7d;font-size:64px;text-shadow:0 0 15px #f4da7d,0 0 50px #8b5cf6,0 0 90px #3b82f6;
+  animation:cast .8s ease-out forwards;
+}
+@keyframes cast{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.15) rotate(-30deg)}
+  25%{opacity:1}
+  75%{opacity:.9;transform:translate(-50%,-50%) scale(1.2) rotate(20deg)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(2.1) rotate(80deg)}
+}
+
+/* Mobile */
+@media(max-width:900px){
+  .sidebar{width:274px;transform:translateX(-100%);transition:transform .24s ease}
+  .sidebar.open{transform:translateX(0)}
+  .content{width:100%;margin-left:0;padding:20px 22px 70px}
+  .mobile-menu{display:grid;place-items:center;background:rgba(18,22,39,.86);color:#eeeafd;border-color:rgba(156,137,207,.18)}
+  .mobile-overlay.active{display:block;position:fixed;inset:0;background:rgba(2,4,12,.60);z-index:45;backdrop-filter:blur(2px)}
+}
+@media(max-width:620px){
+  .content{padding:15px 14px 80px}
+  .topbar{gap:10px;margin-bottom:18px}
+  .topbar-actions .outline-btn span,.topbar-actions .primary-btn{font-size:0}
+  .topbar-actions .outline-btn{width:44px;padding:0}
+  .topbar-actions .outline-btn:before{content:"◈";font-size:16px;color:#c7b0ff}
+  .topbar-actions .primary-btn{width:44px;padding:0}
+  .topbar-actions .primary-btn:before{margin:0;font-size:17px}
+  .arcane-chat{right:14px;bottom:14px}
+  .arcane-chat-panel{position:fixed;left:10px;right:10px;bottom:82px;width:auto;height:min(500px,calc(100vh - 105px));border-radius:20px}
+  .arcane-chat-toggle{width:54px;height:54px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
