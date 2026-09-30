@@ -3,128 +3,187 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0f172a">
-<title>Mago — plataforma de estudos</title>
-<meta name="description" content="Edite seu edital, estude, registre questões e acompanhe suas revisões.">
+<meta name="theme-color" content="#0b1324">
+<title>Mago — seu centro de estudos</title>
+<meta name="description" content="Planeje, estude, revise e acompanhe seu desempenho em um só lugar.">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="app">
+<div class="app-shell">
   <aside class="sidebar" id="sidebar">
     <div class="brand">
-      <div class="brand-logo">M</div>
-      <div><strong>Mago</strong><span>seu estudo, organizado</span></div>
+      <div class="brand-mark">M</div>
+      <div><strong>Mago</strong><span>seu centro de estudos</span></div>
     </div>
-    <div class="sidebar-section">
-      <span class="sidebar-label">ESTUDO</span>
-      <nav class="nav">
-        <button class="nav-item active" data-view="dashboard"><span class="nav-icon">⌂</span><span>Dashboard</span></button>
-        <button class="nav-item" data-view="today"><span class="nav-icon">◷</span><span>Hoje</span></button>
-        <button class="nav-item" data-view="edital"><span class="nav-icon">☷</span><span>Edital</span></button>
-        <button class="nav-item" data-view="questions"><span class="nav-icon">✓</span><span>Questões</span></button>
-        <button class="nav-item" data-view="reviews"><span class="nav-icon">↻</span><span>Revisões</span><b class="nav-badge" id="reviewBadge">0</b></button>
-        <button class="nav-item" data-view="cycle"><span class="nav-icon">◌</span><span>Ciclo</span></button>
-        <button class="nav-item" data-view="diary"><span class="nav-icon">▤</span><span>Diário</span></button>
-      </nav>
-    </div>
-    <div class="sidebar-bottom">
+
+    <nav class="main-nav" aria-label="Navegação">
+      <div class="nav-group-title">ESTUDOS</div>
+      <button class="nav-item active" data-view="dashboard"><span>⌂</span><b>Visão geral</b></button>
+      <button class="nav-item" data-view="today"><span>◷</span><b>Hoje</b><em id="todayDot"></em></button>
+      <button class="nav-item" data-view="edital"><span>☷</span><b>Meu edital</b></button>
+      <button class="nav-item" data-view="questions"><span>✓</span><b>Questões</b></button>
+      <button class="nav-item" data-view="reviews"><span>↻</span><b>Revisões</b><small id="reviewBadge">0</small></button>
+      <button class="nav-item" data-view="cycle"><span>◌</span><b>Ciclo</b></button>
+      <button class="nav-item" data-view="performance"><span>▥</span><b>Desempenho</b></button>
+      <button class="nav-item" data-view="diary"><span>▤</span><b>Diário</b></button>
+
+      <div class="nav-group-title lower">CONTA</div>
+      <button class="nav-item" data-action="open-settings"><span>⚙</span><b>Configurações</b></button>
+    </nav>
+
+    <div class="sidebar-footer">
       <div class="sidebar-focus">
-        <span class="tiny-label">FOCO DE HOJE</span>
-        <strong id="sidebarFocus">0min</strong>
-        <div class="mini-progress"><span id="sidebarProgress"></span></div>
-        <small id="sidebarFocusMeta">Meta de 2h</small>
+        <div class="sidebar-focus-top"><span>FOCO DE HOJE</span><strong id="sideMinutes">0min</strong></div>
+        <div class="progress-track small"><span id="sideProgress"></span></div>
+        <div class="sidebar-focus-bottom"><span>meta diária</span><b id="sideGoal">2h</b></div>
       </div>
-      <button class="side-action" id="themeButton">☼ <span>Tema claro</span></button>
-      <button class="side-action" id="resetButton">↺ <span>Restaurar demo</span></button>
+      <button class="sidebar-link" id="themeButton">☼ <span>Tema claro</span></button>
+      <button class="sidebar-link" id="resetButton">↺ <span>Restaurar demo</span></button>
     </div>
   </aside>
 
-  <main class="main">
+  <main class="content">
     <header class="topbar">
-      <div class="topbar-left">
-        <button class="mobile-menu" id="mobileMenuButton">☰</button>
-        <div><span class="eyebrow" id="dateLabel">Hoje</span><h1 id="pageTitle">Dashboard</h1></div>
+      <div class="topbar-title">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Abrir menu">☰</button>
+        <div><span class="eyebrow" id="dateLabel">Hoje</span><h1 id="pageTitle">Visão geral</h1></div>
       </div>
-      <div class="top-actions">
-        <button class="outline-button" id="timerHeaderButton">⏱ <span>Foco</span></button>
-        <button class="primary-button" id="quickActionButton">＋ Registrar estudo</button>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="globalSearchButton" title="Pesquisar">⌕</button>
+        <button class="outline-btn" id="headerFocusButton">⏱ <span>Foco</span></button>
+        <button class="primary-btn" id="headerRegisterButton">＋ Registrar</button>
       </div>
     </header>
+
     <div class="mobile-overlay" id="mobileOverlay"></div>
 
-    <section class="view active" id="dashboardView">
-      <div class="welcome-card">
-        <div class="welcome-copy">
-          <span class="eyebrow">SEU DIA</span>
-          <h2 id="welcomeTitle">Bora estudar?</h2>
-          <p id="welcomeText">Organize o próximo passo e avance no edital.</p>
-          <div class="welcome-actions">
-            <button class="primary-button" data-action="open-timer">▶ Começar foco</button>
-            <button class="ghost-button" data-action="go-edital">Ver edital →</button>
+    <section class="page active" id="dashboardPage">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow light">PAINEL DE ESTUDOS</span>
+          <h2 id="heroTitle">Bora estudar?</h2>
+          <p id="heroText">Seu próximo passo está a poucos cliques.</p>
+          <div class="hero-actions">
+            <button class="hero-primary" data-action="focus">▶ Começar bloco</button>
+            <button class="hero-secondary" data-view-target="today">Abrir meu dia →</button>
           </div>
         </div>
-        <div class="daily-ring" id="dailyRing"><div><strong id="dailyPercent">0%</strong><span>meta diária</span></div></div>
+        <div class="hero-ring" id="heroRing"><div><strong id="heroPct">0%</strong><span>meta do dia</span></div></div>
       </div>
 
-      <div class="stats-grid">
-        <article class="stat-card"><div class="stat-icon blue">⏱</div><span class="stat-label">Hoje</span><strong id="statToday">0h 00</strong><small>tempo estudado</small></article>
-        <article class="stat-card"><div class="stat-icon green">✓</div><span class="stat-label">Questões</span><strong id="statQuestions">0</strong><small><span id="statAccuracy">0%</span> de acerto</small></article>
-        <article class="stat-card"><div class="stat-icon amber">↻</div><span class="stat-label">Revisões</span><strong id="statReviews">0</strong><small>para hoje</small></article>
-        <article class="stat-card"><div class="stat-icon purple">🔥</div><span class="stat-label">Constância</span><strong id="statStreak">0 dias</strong><small>sequência atual</small></article>
+      <div class="metric-grid">
+        <article class="metric"><div class="metric-icon blue">⏱</div><div><span>Tempo hoje</span><strong id="metricMinutes">0h 00</strong><small>meta diária</small></div></article>
+        <article class="metric"><div class="metric-icon green">✓</div><div><span>Questões</span><strong id="metricQuestions">0</strong><small><b id="metricAccuracy">0%</b> de acerto</small></div></article>
+        <article class="metric"><div class="metric-icon amber">↻</div><div><span>Revisões</span><strong id="metricReviews">0</strong><small>pendentes</small></div></article>
+        <article class="metric"><div class="metric-icon purple">🔥</div><div><span>Constância</span><strong id="metricStreak">0 dias</strong><small>sequência atual</small></div></article>
       </div>
 
-      <div class="content-grid two-col">
-        <section class="panel"><div class="panel-head"><div><span class="eyebrow">PLANEJAMENTO</span><h3>Próximos estudos</h3></div><button class="link-button" data-action="go-today">Ver dia</button></div><div id="dashboardSchedule"></div></section>
-        <section class="panel"><div class="panel-head"><div><span class="eyebrow">REVISÕES</span><h3>O que precisa voltar?</h3></div><button class="link-button" data-action="go-reviews">Abrir</button></div><div id="dashboardReviews"></div></section>
+      <div class="grid-2">
+        <section class="card">
+          <div class="section-head"><div><span class="eyebrow">PRÓXIMO PASSO</span><h3>O que estudar agora</h3></div><button class="text-btn" data-view-target="today">Ver dia</button></div>
+          <div id="nextStudy"></div>
+        </section>
+        <section class="card">
+          <div class="section-head"><div><span class="eyebrow">REVISÕES</span><h3>Não deixe acumular</h3></div><button class="text-btn" data-view-target="reviews">Abrir fila</button></div>
+          <div id="reviewPreview"></div>
+        </section>
       </div>
 
-      <div class="content-grid two-col">
-        <section class="panel"><div class="panel-head"><div><span class="eyebrow">DESEMPENHO</span><h3>Questões por matéria</h3></div></div><div id="subjectPerformance"></div></section>
-        <section class="panel"><div class="panel-head"><div><span class="eyebrow">ÚLTIMOS 7 DIAS</span><h3>Ritmo de estudos</h3></div></div><div class="week-chart" id="weekChart"></div></section>
+      <div class="grid-2">
+        <section class="card">
+          <div class="section-head"><div><span class="eyebrow">RITMO</span><h3>Últimos 7 dias</h3></div><span class="section-note" id="weekTotal">0h</span></div>
+          <div class="week-chart" id="weekChart"></div>
+        </section>
+        <section class="card">
+          <div class="section-head"><div><span class="eyebrow">PONTOS DE ATENÇÃO</span><h3>Onde vale insistir</h3></div><button class="text-btn" data-view-target="performance">Ver análise</button></div>
+          <div id="attentionList"></div>
+        </section>
       </div>
 
-      <section class="panel"><div class="panel-head"><div><span class="eyebrow">EDITAL</span><h3>Progresso por matéria</h3></div><button class="link-button" data-action="go-edital">Ver completo</button></div><div id="dashboardSubjects" class="subject-overview"></div></section>
+      <section class="card">
+        <div class="section-head"><div><span class="eyebrow">MEU EDITAL</span><h3>Progresso por matéria</h3></div><button class="text-btn" data-view-target="edital">Abrir edital</button></div>
+        <div class="subject-cards" id="subjectCards"></div>
+      </section>
     </section>
 
-    <section class="view" id="todayView">
-      <div class="page-intro"><div><span class="eyebrow">PLANO DIÁRIO</span><h2>Hoje</h2><p>Seu estudo em blocos claros e fáceis de acompanhar.</p></div><button class="primary-button" data-action="open-timer">▶ Começar foco</button></div>
-      <div class="today-layout">
-        <section class="panel"><div class="today-goal-head"><div><span class="eyebrow">META DO DIA</span><h3>2h de estudo</h3></div><strong id="todayGoalValue">0%</strong></div><div class="big-progress"><span id="todayBigProgress"></span></div><div class="goal-meta"><span id="todayGoalMinutes">0min feitos</span><span id="todayGoalTarget">120min meta</span></div></section>
-        <section class="panel"><div class="panel-head"><div><span class="eyebrow">AÇÃO RÁPIDA</span><h3>Registrar agora</h3></div></div><div class="quick-grid"><button class="quick-tile" data-action="add-questions"><strong>+ Questões</strong><span>registre um bloco</span></button><button class="quick-tile" data-action="add-study"><strong>+ Estudo</strong><span>registre minutos</span></button><button class="quick-tile" data-action="go-diary"><strong>+ Diário</strong><span>anote como foi</span></button></div></section>
+    <section class="page" id="todayPage">
+      <div class="page-header"><div><span class="eyebrow">PLANO DO DIA</span><h2>Hoje</h2><p>Um dia bom começa com o próximo bloco, não com o perfeito.</p></div><button class="primary-btn" data-action="focus">▶ Começar foco</button></div>
+
+      <div class="today-top-grid">
+        <section class="card goal-card">
+          <div class="goal-top"><div><span class="eyebrow">META DIÁRIA</span><h3 id="goalTitle">2h de estudo</h3></div><strong id="goalPct">0%</strong></div>
+          <div class="big-progress"><span id="goalBar"></span></div>
+          <div class="goal-bottom"><span id="goalDone">0min estudados</span><span id="goalTarget">120min de meta</span></div>
+        </section>
+
+        <section class="card focus-card">
+          <div class="section-head"><div><span class="eyebrow">FOCO</span><h3>Cronômetro</h3></div></div>
+          <div class="focus-display" id="focusDisplay">25:00</div>
+          <div class="focus-row"><button class="outline-btn" id="focusReset">Resetar</button><button class="primary-btn" id="focusToggle">Começar</button><button class="outline-btn" id="focusFinish">Registrar</button></div>
+          <div class="preset-row"><button data-preset="25">25 min</button><button data-preset="50">50 min</button><button data-preset="90">90 min</button></div>
+          <select id="focusSubject" class="wide-select"><option value="">Escolha uma matéria</option></select>
+          <input id="focusTopic" class="wide-input" placeholder="Assunto (opcional)">
+        </section>
       </div>
-      <section class="panel"><div class="panel-head"><div><span class="eyebrow">ROTINA</span><h3>Blocos do ciclo</h3></div><button class="link-button" data-action="go-cycle">Editar ciclo</button></div><div id="todayBlocks" class="study-blocks"></div></section>
-      <section class="panel"><div class="panel-head"><div><span class="eyebrow">CONCLUÍDO HOJE</span><h3>Histórico de foco</h3></div></div><div id="todaySessions" class="simple-list"></div></section>
+
+      <section class="card">
+        <div class="section-head"><div><span class="eyebrow">CICLO</span><h3>Blocos sugeridos para hoje</h3></div><button class="text-btn" data-view-target="cycle">Ajustar ciclo</button></div>
+        <div id="todayPlan"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head"><div><span class="eyebrow">REGISTROS</span><h3>O que você já fez hoje</h3></div><button class="text-btn" data-action="study">＋ Registrar estudo</button></div>
+        <div id="todaySessions"></div>
+      </section>
     </section>
 
-    <section class="view" id="editalView">
-      <div class="page-intro"><div><span class="eyebrow">EDITAL VERTICALIZADO</span><h2>Seu edital</h2><p>Teoria, questões, acertos, status e revisões em um só lugar.</p></div><button class="primary-button" data-action="add-topic">＋ Adicionar assunto</button></div>
-      <div class="toolbar panel"><div class="search-box"><span>⌕</span><input id="topicSearch" placeholder="Buscar assunto..."></div><select id="subjectFilter"><option value="">Todas as matérias</option></select><select id="statusFilter"><option value="">Todos os status</option><option value="nao-iniciado">Não iniciado</option><option value="andamento">Em andamento</option><option value="concluido">Concluído</option><option value="revisar">Revisar</option></select></div>
-      <section class="panel edital-panel"><div class="edital-summary" id="editalSummary"></div><div class="table-wrap"><table class="edital-table"><thead><tr><th>Assunto</th><th>Teoria</th><th>Questões</th><th>Acertos</th><th>Revisões</th><th>Status</th><th></th></tr></thead><tbody id="editalTableBody"></tbody></table></div></section>
+    <section class="page" id="editalPage">
+      <div class="page-header"><div><span class="eyebrow">EDITAL VERTICALIZADO</span><h2>Meu edital</h2><p>Transforme o conteúdo do edital em tarefas rastreáveis.</p></div><div class="button-row"><button class="outline-btn" data-action="import">⇩ Importar</button><button class="primary-btn" data-action="topic">＋ Assunto</button></div></div>
+      <div class="summary-strip" id="editalSummary"></div>
+      <div class="toolbar card"><div class="search-field">⌕<input id="topicSearch" placeholder="Buscar assunto ou matéria..."></div><select id="topicSubjectFilter"><option value="">Todas as matérias</option></select><select id="topicStatusFilter"><option value="">Todos os status</option><option value="nao-iniciado">Não iniciado</option><option value="andamento">Em andamento</option><option value="concluido">Concluído</option><option value="revisar">Revisar</option></select></div>
+      <div class="edital-sections" id="editalSections"></div>
     </section>
 
-    <section class="view" id="questionsView">
-      <div class="page-intro"><div><span class="eyebrow">BANCO DE QUESTÕES</span><h2>Questões</h2><p>Saiba quantas você fez e como está seu aproveitamento.</p></div><button class="primary-button" data-action="add-questions">＋ Registrar bloco</button></div>
-      <div class="stats-grid three"><article class="metric-banner"><span>Total resolvidas</span><strong id="qTotal">0</strong></article><article class="metric-banner"><span>Acertos</span><strong id="qCorrect">0</strong></article><article class="metric-banner"><span>Percentual</span><strong id="qPercent">0%</strong></article></div>
-      <section class="panel"><div class="panel-head"><div><span class="eyebrow">HISTÓRICO</span><h3>Blocos registrados</h3></div></div><div id="questionHistory" class="question-history"></div></section>
+    <section class="page" id="questionsPage">
+      <div class="page-header"><div><span class="eyebrow">BANCO DE QUESTÕES</span><h2>Questões</h2><p>Registre seus blocos e transforme erro em diagnóstico.</p></div><button class="primary-btn" data-action="questions">＋ Registrar bloco</button></div>
+      <div class="metric-grid three">
+        <article class="big-metric"><span>Resolvidas</span><strong id="questionTotal">0</strong></article>
+        <article class="big-metric"><span>Acertos</span><strong id="questionCorrect">0</strong></article>
+        <article class="big-metric"><span>Aproveitamento</span><strong id="questionPercent">0%</strong></article>
+      </div>
+      <div class="grid-2">
+        <section class="card"><div class="section-head"><div><span class="eyebrow">DESEMPENHO</span><h3>Por matéria</h3></div></div><div id="questionBySubject"></div></section>
+        <section class="card"><div class="section-head"><div><span class="eyebrow">CADERNO DE ERROS</span><h3>Assuntos com maior dificuldade</h3></div></div><div id="errorNotebook"></div></section>
+      </div>
+      <section class="card"><div class="section-head"><div><span class="eyebrow">HISTÓRICO</span><h3>Últimos blocos</h3></div></div><div id="questionHistory"></div></section>
     </section>
 
-    <section class="view" id="reviewsView">
-      <div class="page-intro"><div><span class="eyebrow">REVISÃO ESPAÇADA</span><h2>Revisões</h2><p>Controle 24h, 7 dias, 30 dias e próximas revisões.</p></div><button class="outline-button" data-action="add-review">＋ Agendar revisão</button></div>
-      <div class="review-filters"><button class="filter-chip active" data-review-filter="all">Todas</button><button class="filter-chip" data-review-filter="today">Hoje</button><button class="filter-chip" data-review-filter="overdue">Atrasadas</button><button class="filter-chip" data-review-filter="future">Próximas</button></div>
+    <section class="page" id="reviewsPage">
+      <div class="page-header"><div><span class="eyebrow">REVISÃO ESPAÇADA</span><h2>Revisões</h2><p>Veja o que está atrasado, o que vence hoje e o que vem pela frente.</p></div><button class="outline-btn" data-action="review">＋ Agendar</button></div>
+      <div class="review-tabs"><button class="review-tab active" data-review-tab="all">Todas</button><button class="review-tab" data-review-tab="today">Hoje</button><button class="review-tab" data-review-tab="overdue">Atrasadas</button><button class="review-tab" data-review-tab="future">Próximas</button></div>
       <div class="review-grid" id="reviewGrid"></div>
     </section>
 
-    <section class="view" id="cycleView">
-      <div class="page-intro"><div><span class="eyebrow">CICLO DE ESTUDOS</span><h2>Seu ciclo</h2><p>Distribua suas horas entre as matérias.</p></div><button class="primary-button" data-action="add-cycle">＋ Adicionar matéria</button></div>
-      <section class="panel cycle-head"><div><span class="eyebrow">SEMANA ATUAL</span><h3 id="cycleTotalTitle">0h planejadas</h3><p id="cycleSubtitle">0 matérias</p></div><div class="cycle-total"><strong id="cycleStudied">0h</strong><span>estudadas nos últimos 7 dias</span></div></section>
-      <section class="panel"><div id="cycleList" class="cycle-list"></div></section>
+    <section class="page" id="cyclePage">
+      <div class="page-header"><div><span class="eyebrow">CICLO DE ESTUDOS</span><h2>Meu ciclo</h2><p>Priorize o que precisa de mais tempo.</p></div><div class="button-row"><button class="outline-btn" data-action="auto-cycle">✦ Organizar</button><button class="primary-btn" data-action="cycle">＋ Matéria</button></div></div>
+      <div class="cycle-overview card"><div><span class="eyebrow">HORAS PLANEJADAS</span><strong id="cycleHours">0h</strong><small>distribuídas no ciclo</small></div><div><span class="eyebrow">ESTUDADO</span><strong id="cycleStudied">0h</strong><small>últimos 7 dias</small></div><div><span class="eyebrow">COBERTURA</span><strong id="cycleCoverage">0%</strong><small>da meta semanal</small></div></div>
+      <section class="card"><div class="section-head"><div><span class="eyebrow">DISTRIBUIÇÃO</span><h3>Matérias</h3></div></div><div id="cycleList"></div></section>
     </section>
 
-    <section class="view" id="diaryView">
-      <div class="page-intro"><div><span class="eyebrow">DIÁRIO DE ESTUDOS</span><h2>Diário</h2><p>Anote seu rendimento e o próximo passo.</p></div></div>
+    <section class="page" id="performancePage">
+      <div class="page-header"><div><span class="eyebrow">ANÁLISE</span><h2>Desempenho</h2><p>Uma leitura simples do seu estudo: tempo, cobertura e acerto.</p></div><button class="outline-btn" data-action="export">⇧ Exportar dados</button></div>
+      <div class="analytics-grid">
+        <section class="card"><div class="section-head"><div><span class="eyebrow">TEMPO</span><h3>Distribuição por matéria</h3></div></div><div id="timeBySubject"></div></section>
+        <section class="card"><div class="section-head"><div><span class="eyebrow">COBERTURA</span><h3>Teoria do edital</h3></div></div><div id="coverageBySubject"></div></section>
+      </div>
+      <section class="card"><div class="section-head"><div><span class="eyebrow">RESUMO</span><h3>Visão por matéria</h3></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Matéria</th><th>Teoria</th><th>Questões</th><th>Acerto</th><th>Tempo</th><th>Prioridade</th></tr></thead><tbody id="performanceTable"></tbody></table></div></section>
+    </section>
+
+    <section class="page" id="diaryPage">
+      <div class="page-header"><div><span class="eyebrow">DIÁRIO</span><h2>Diário de estudos</h2><p>Registre o que funcionou, as dificuldades e o próximo passo.</p></div></div>
       <div class="diary-layout">
-        <form class="panel diary-form" id="diaryForm"><div class="panel-head"><div><span class="eyebrow">NOVA ENTRADA</span><h3>Como foi?</h3></div></div><label>Data<input type="date" id="diaryDate" required></label><label>Humor<select id="diaryMood"><option>😀</option><option>🙂</option><option>😐</option><option>😣</option></select></label><label>Anotação<textarea id="diaryText" rows="9" placeholder="Ex.: Hoje rendi bem em Português..."></textarea></label><button class="primary-button" type="submit">Salvar no diário</button></form>
-        <section class="panel"><div class="panel-head"><div><span class="eyebrow">HISTÓRICO</span><h3>Suas anotações</h3></div></div><div id="diaryList" class="diary-list"></div></section>
+        <form class="card diary-form" id="diaryForm"><div class="section-head"><div><span class="eyebrow">NOVA ENTRADA</span><h3>Como foi hoje?</h3></div></div><label>Data<input id="diaryDate" type="date" required></label><label>Humor<select id="diaryMood"><option>😀</option><option>🙂</option><option>😐</option><option>😣</option></select></label><label>Escreva<textarea id="diaryText" rows="10" placeholder="Ex.: consegui avançar em..."></textarea></label><button class="primary-btn" type="submit">Salvar anotação</button></form>
+        <section class="card"><div class="section-head"><div><span class="eyebrow">HISTÓRICO</span><h3>Suas anotações</h3></div></div><div id="diaryEntries"></div></section>
       </div>
     </section>
   </main>
@@ -132,8 +191,8 @@
 
 <div class="modal-backdrop" id="modalBackdrop" hidden>
   <div class="modal" role="dialog" aria-modal="true">
-    <div class="modal-head"><div><span class="eyebrow">MAGO</span><h2 id="modalTitle">Registrar</h2></div><button class="icon-button" id="modalClose">×</button></div>
-    <form id="modalForm"><div id="modalFields"></div><div class="modal-actions"><button type="button" class="outline-button" id="modalCancel">Cancelar</button><button type="submit" class="primary-button">Salvar</button></div></form>
+    <div class="modal-header"><div><span class="eyebrow">MAGO</span><h2 id="modalTitle">Registrar</h2></div><button class="icon-btn" id="modalClose">×</button></div>
+    <form id="modalForm"><div id="modalFields"></div><div class="modal-actions"><button type="button" class="outline-btn" id="modalCancel">Cancelar</button><button type="submit" class="primary-btn">Salvar</button></div></form>
   </div>
 </div>
 <div class="toast" id="toast"></div>
