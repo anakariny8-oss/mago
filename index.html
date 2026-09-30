@@ -184,7 +184,7 @@
     </section>
 
     <section class="page" id="todayPage">
-      <div class="page-header"><div><span class="eyebrow">PLANO DO DIA</span><p>Escolha o próximo bloco e comece.</p></div><button class="primary-btn" data-action="focus">▶ Começar</button></div>
+      <div class="page-header"><div><span class="eyebrow">PLANO DO DIA</span><p>Escolha o próximo bloco e comece. O Mago deixa uma única próxima ação visível para reduzir decisões.</p></div><div class="button-row"><button class="outline-btn" data-action="schedule">✦ Cronograma</button><button class="primary-btn" data-action="focus">▶ Começar</button></div></div>
 
       <div class="today-top-grid">
         <section class="card goal-card">
@@ -244,11 +244,11 @@
     <section class="page" id="cyclePage">
       <div class="page-header"><div><span class="eyebrow">CICLO DE ESTUDOS</span><p>Distribua suas horas entre as matérias.</p></div><div class="button-row"><button class="outline-btn" data-action="auto-cycle">✦ Auto-organizar</button><button class="primary-btn" data-action="cycle">＋ Matéria</button></div></div>
       <div class="cycle-overview card"><div><span class="eyebrow">HORAS</span><strong id="cycleHours">0h</strong><small>no ciclo</small></div><div><span class="eyebrow">ESTUDADO</span><strong id="cycleStudied">0h</strong><small>últimos 7 dias</small></div><div><span class="eyebrow">EDITAL</span><strong id="cycleCoverage">0%</strong><small>da semana</small></div></div>
-      <section class="card"><div class="section-head"><div><span class="eyebrow">DISTRIBUIÇÃO</span><h3>Matérias</h3></div></div><div id="cycleList"></div></section>
+      <section class="card"><div class="section-head"><div><span class="eyebrow">DISTRIBUIÇÃO</span><h3>Matérias no ciclo</h3></div></div><div id="cycleList"></div></section><section class="card"><div class="section-head"><div><span class="eyebrow">GRIMÓRIO</span><h3>Gerenciar matérias</h3></div><button class="primary-btn" data-action="subject">＋ Nova matéria</button></div><div id="subjectManager"></div></section>
     </section>
 
     <section class="page" id="performancePage">
-      <div class="page-header"><div><span class="eyebrow">ANÁLISE</span><p>Veja onde seu tempo e seus acertos estão.</p></div><button class="outline-btn" data-action="export">⇧ Exportar dados</button></div>
+      <div class="page-header"><div><span class="eyebrow">ANÁLISE</span><p>Veja onde seu tempo, seus acertos e sua constância estão.</p></div><div class="button-row"><button class="outline-btn" data-action="restore">⇩ Restaurar backup</button><input id="restoreInput" type="file" accept="application/json,.json" hidden><button class="outline-btn" data-action="export">⇧ Exportar dados</button></div></div>
       <div class="analytics-grid">
         <section class="card"><div class="section-head"><div><span class="eyebrow">TEMPO</span><h3>Tempo por matéria</h3></div></div><div id="timeBySubject"></div></section>
         <section class="card"><div class="section-head"><div><span class="eyebrow">COBERTURA</span><h3>Cobertura do edital</h3></div></div><div id="coverageBySubject"></div></section>
@@ -297,5 +297,6 @@
 </div>
 <script src="app.js"></script>
 <script src="mage-ui.js"></script>
+<script src="mago-enhanced.js"></script>
 </body>
 </html>
