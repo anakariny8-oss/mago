@@ -2236,3 +2236,18 @@ body:after{left:-220px;bottom:-150px;background:rgba(36,111,214,.09)}
   .next-spell{align-items:flex-start;flex-wrap:wrap}
   .next-spell .primary-btn{width:100%}
 }
+
+.study-history-row{display:grid;grid-template-columns:80px minmax(0,1fr) auto auto auto;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid rgba(150,137,191,.12)}
+.study-history-row:last-child{border-bottom:0}
+.history-date{font-size:10px;color:#9e9bae}
+.history-main strong{display:block;font-size:12px}
+.history-main small{display:block;font-size:10px;color:#8f8da5;margin-top:2px}
+.study-history-row>b{font-size:11px;color:#c1a6ff}
+.study-history-row button{border:1px solid rgba(154,137,204,.16);background:rgba(31,34,53,.72);color:#bfaeff;border-radius:8px;padding:6px 8px;font-size:9px}
+@media(max-width:620px){
+  .study-history-row{grid-template-columns:62px minmax(0,1fr) auto}
+  .study-history-row>b{grid-column:3;grid-row:1}
+  .study-history-row button{grid-row:2}
+  .study-history-row button:first-of-type{grid-column:2}
+  .study-history-row button:last-of-type{grid-column:3}
+}
