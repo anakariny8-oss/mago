@@ -1013,3 +1013,67 @@ body{
 @media(max-width:760px){.rpg-strip{grid-template-columns:1fr 1fr}.achievement-board{grid-template-columns:1fr}}
 @media(max-width:520px){.rpg-strip{grid-template-columns:1fr}.rpg-card{min-height:74px}}
 .dark-mode .rpg-card{background:linear-gradient(180deg,#151d30,#111927);border-color:#30354d}.dark-mode .achievement{background:#172033}.dark-mode .achievement.unlocked{background:linear-gradient(180deg,#242034,#171c2b);border-color:#4a4167}.dark-mode .quest-card{background:#201e18}
+
+
+/* ===== leitura e hierarquia ===== */
+.eyebrow{
+  font-size:10px;
+  letter-spacing:.09em;
+  line-height:1.25;
+  text-transform:none;
+  font-weight:700;
+  color:#8792a3;
+}
+.sidebar .nav-group-title,
+.sidebar .sidebar-focus-top span,
+.sidebar .sidebar-focus-bottom span{
+  font-size:9px;
+  letter-spacing:.08em;
+}
+.sidebar .brand span{font-size:11px}
+.nav-item b{font-size:13px}
+.topbar h1{font-size:31px}
+.page-header h2{font-size:33px}
+.section-head h3{font-size:18px}
+.page-header p{font-size:13px;line-height:1.55;max-width:680px}
+.hero h2{font-size:36px}
+.hero p{font-size:14px;line-height:1.7;max-width:670px}
+.metric span,.big-metric span{font-size:10px;letter-spacing:.05em}
+.metric strong{font-size:26px}
+.metric small{font-size:10px}
+.rpg-card span{font-size:8px;letter-spacing:.08em}
+.rpg-card strong{font-size:16px}
+.rpg-card small{font-size:8px;line-height:1.35}
+.rpg-card{min-height:88px;padding:14px 15px}
+.section-head{margin-bottom:17px}
+.card{padding:22px}
+.schedule-row,.review-row,.session-row,.attention-row{padding:12px 0}
+.row-main strong{font-size:12px}
+.row-main small{font-size:10px}
+.status-pill{font-size:9px}
+.subject-card h4{font-size:12px}
+.subject-card small{font-size:9px;line-height:1.35}
+.time-chip{font-size:9px}
+.plan-row{padding:13px}
+.plan-row strong{font-size:11px}
+.plan-row small{font-size:9px}
+.question-history-row strong,.question-history-row span{font-size:9px}
+.review-card-top strong{font-size:11px}
+.review-card p{font-size:9px;line-height:1.65}
+.review-bottom small{font-size:8px}
+.cycle-list-row strong{font-size:10px}
+.cycle-list-row span{font-size:9px}
+.data-table th{font-size:8px}
+.data-table td{font-size:9px}
+.diary-form label{font-size:9px}
+.diary-entry-top strong{font-size:10px}
+.diary-entry p{font-size:9px;line-height:1.7}
+.toast{font-size:10px}
+
+@media(max-width:620px){
+  .topbar h1{font-size:27px}
+  .page-header h2{font-size:28px}
+  .hero h2{font-size:30px}
+  .hero p{font-size:12px}
+  .section-head h3{font-size:17px}
+}
