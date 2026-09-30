@@ -309,6 +309,17 @@
       q('#mSubject').value=payload?.subject||state.subjects[0]?.name||'';
       return;
     }
+    if(type==='questions'){
+      title.textContent='Registrar questões';
+      fields.innerHTML=grid([
+        {label:'Matéria',field:'<select id="mSubject">'+opts+'</select>'},
+        {label:'Assunto',field:'<input id="mTopic" placeholder="Assunto das questões">'},
+        {label:'Data',field:'<input id="mDate" type="date" value="'+localToday()+'">'},
+        {label:'Questões / acertos',field:'<div class="two-inputs"><input id="mTotal" type="number" min="1" value="20"><input id="mCorrect" type="number" min="0" value="14"></div>'}
+      ]);
+      q('#mSubject').value=state.subjects[0]?.name||'';
+      return;
+    }
     if(type==='editSession'){
       title.textContent='Corrigir registro';
       fields.innerHTML=grid([
