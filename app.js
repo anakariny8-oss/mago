@@ -110,8 +110,48 @@ function navigate(view){
 }
 function render(){
   document.getElementById('dateLabel').textContent=fullDate(today());
-  renderSidebar();renderDashboard();renderToday();renderEdital();renderQuestions();renderReviews();renderCycle();renderPerformance();renderDiary();applyTheme();refreshFocusSubjects();
+  renderSidebar();renderDashboard();renderToday();renderEdital();renderQuestions();renderReviews();renderCycle();renderPerformance();renderDiary();renderGame();applyTheme();refreshFocusSubjects();
 }
+
+function gameStats(){
+  const minutes=state.sessions.reduce(function(a,s){return a+Number(s.minutes||0)},0);
+  const questions=totalQuestions().total;
+  const completed=state.topics.filter(function(t){return t.status==='concluido'}).length;
+  const reviews=state.topics.flatMap(function(t){return t.reviews||[]}).filter(function(d){return d<today()}).length;
+  const xp=minutes*2+questions*5+completed*40+reviews*10;
+  const level=Math.floor(xp/500)+1;
+  const current=xp%500;
+  const rank=level<3?'Aprendiz':level<6?'Mago Novato':level<10?'Mago de Batalha':level<15?'Arquimago':'Mestre Arcano';
+  return {xp:xp,level:level,current:current,next:500-current,rank:rank};
+}
+function renderGame(){
+  const g=gameStats(),todayMin=todayMinutes(),goal=state.settings.dailyMinutes;
+  const xpPct=Math.round(g.current/500*100),mana=Math.max(0,Math.min(100,100-Math.round(todayMin/Math.max(goal,1)*35)));
+  document.getElementById('sideLevel').textContent=g.level;
+  document.getElementById('sideXp').textContent=g.xp+' XP';
+  document.getElementById('rankName').textContent=g.rank;
+  document.getElementById('rankText').textContent='Nível '+g.level+' · '+g.xp+' XP acumulados';
+  document.getElementById('xpText').textContent=g.current+' / 500 XP';
+  document.getElementById('xpBar').style.width=xpPct+'%';
+  document.getElementById('xpNext').textContent=g.next+' XP para o próximo nível';
+  document.getElementById('manaText').textContent=mana+'%';
+  document.getElementById('questText').textContent=Math.min(todayMin,goal)+' / '+fmtHours(goal/60);
+  document.getElementById('questSub').textContent=todayMin>=goal?'Missão concluída ✦':'Faltam '+fmtMin(Math.max(0,goal-todayMin));
+  const quests=[
+    {icon:'⏱',title:'Feitiço do foco',desc:'Estude pelo menos 50 minutos',done:todayMin>=50},
+    {icon:'⚔',title:'Desafio das questões',desc:'Resolva 20 questões',done:state.questions.filter(function(q){return q.date===today()}).reduce(function(a,q){return a+q.total},0)>=20},
+    {icon:'↻',title:'Ritual da memória',desc:'Conclua uma revisão vencida',done:dueReviews().some(function(r){return r.date<=today()})===false}
+  ];
+  document.getElementById('questBoard').innerHTML=quests.map(function(q){return '<div class="quest-row '+(q.done?'completed':'')+'"><span class="quest-icon">'+q.icon+'</span><div><strong>'+q.title+'</strong><small>'+q.desc+'</small></div><b>'+ (q.done?'✓':'○') +'</b></div>'}).join('');
+  const achievements=[
+    {icon:'🔥',name:'Primeira chama',desc:'Estudou em 3 dias seguidos',done:streak()>=3},
+    {icon:'📚',name:'Grimório aberto',desc:'Concluiu 5 assuntos',done:completedTopics()>=5},
+    {icon:'⚔',name:'Caçador de erros',desc:'Resolveu 50 questões',done:totalQuestions().total>=50},
+    {icon:'🌙',name:'Guardião da constância',desc:'Acumulou 10 dias de estudo',done:streak()>=10}
+  ];
+  document.getElementById('achievementBoard').innerHTML=achievements.map(function(a){return '<div class="achievement '+(a.done?'unlocked':'locked')+'"><span>'+a.icon+'</span><div><strong>'+a.name+'</strong><small>'+a.desc+'</small></div><b>'+ (a.done?'✦':'🔒') +'</b></div>'}).join('');
+}
+function completedTopics(){return state.topics.filter(function(t){return t.status==='concluido'}).length}
 function renderSidebar(){
   const m=todayMinutes(),pct=Math.min(100,Math.round(m/state.settings.dailyMinutes*100)),d=dueReviews().length;
   document.getElementById('sideMinutes').textContent=fmtMin(m);document.getElementById('sideProgress').style.width=pct+'%';document.getElementById('sideGoal').textContent=fmtHours(state.settings.dailyMinutes/60);document.getElementById('reviewBadge').textContent=d;document.getElementById('reviewBadge').style.display=d?'grid':'none';document.getElementById('todayDot').style.display=m?'block':'none';
