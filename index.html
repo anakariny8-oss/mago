@@ -21,11 +21,11 @@
       <button class="nav-item active" data-view="dashboard"><span>⌂</span><b>Início</b></button>
       <button class="nav-item" data-view="today"><span>◷</span><b>Hoje</b><em id="todayDot"></em></button>
       <button class="nav-item" data-view="edital"><span>☷</span><b>Edital</b></button>
-      <button class="nav-item" data-view="questions"><span>✓</span><b>Questões</b></button>
+      <button class="nav-item" data-view="questions"><span>✓</span><b>Feitiços</b></button>
       <button class="nav-item" data-view="reviews"><span>↻</span><b>Revisões</b><small id="reviewBadge">0</small></button>
       <button class="nav-item" data-view="cycle"><span>◌</span><b>Ciclo</b></button>
       <button class="nav-item" data-view="performance"><span>▥</span><b>Desempenho</b></button>
-      <button class="nav-item" data-view="diary"><span>▤</span><b>Diário</b></button>
+      <button class="nav-item" data-view="diary"><span>▤</span><b>Grimório</b></button>
 
       <div class="nav-group-title lower">GERAL</div>
       <button class="nav-item" data-action="open-settings"><span>⚙</span><b>Configurações</b></button>
@@ -268,6 +268,29 @@
   </div>
 </div>
 <div class="toast" id="toast"></div>
+
+<div class="arcane-chat" id="arcaneChat" aria-label="Assistente arcano">
+  <button class="arcane-chat-toggle" id="arcaneChatToggle" aria-label="Abrir assistente">✦</button>
+  <section class="arcane-chat-panel" id="arcaneChatPanel" aria-hidden="true">
+    <div class="arcane-chat-head">
+      <div class="mage-mini"><span>✦</span></div>
+      <div><strong>Oráculo do Mago</strong><small>seu assistente arcano</small></div>
+      <button class="arcane-chat-close" id="arcaneChatClose" aria-label="Fechar">×</button>
+    </div>
+    <div class="arcane-chat-messages" id="arcaneChatMessages">
+      <div class="arcane-message mage"><span>✦</span><p>Olá, aprendiz. Posso te ajudar a decidir o próximo passo da sua jornada.</p></div>
+    </div>
+    <div class="arcane-quick">
+      <button data-chat="O que devo estudar agora?">Próximo feitiço</button>
+      <button data-chat="Como está meu progresso?">Meu progresso</button>
+    </div>
+    <form class="arcane-chat-form" id="arcaneChatForm">
+      <input id="arcaneChatInput" autocomplete="off" placeholder="Conjure uma pergunta..." />
+      <button type="submit" aria-label="Enviar">➜</button>
+    </form>
+  </section>
+</div>
 <script src="app.js"></script>
+<script src="mage-ui.js"></script>
 </body>
 </html>
