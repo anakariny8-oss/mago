@@ -59,24 +59,87 @@
     <div class="mobile-overlay" id="mobileOverlay"></div>
 
     <section class="page active" id="dashboardPage">
-      <div class="hero">
+      <div class="mage-hero">
+        <div class="hero-stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="hero-sigil" aria-hidden="true">✦</div>
         <div class="hero-copy">
-          <div class="hero-kicker"><span class="rune">✦</span><span class="eyebrow light">TORRE DO MAGO</span></div>
-          <h2 id="heroTitle">Seu grimório está aberto.</h2>
-          <p id="heroText">Estude, ganhe XP e avance no seu caminho.</p>
+          <span class="eyebrow light">GRIMÓRIO · JORNADA DO DIA</span>
+          <h2 id="heroTitle">Bora estudar?</h2>
+          <p id="heroText">Escolha uma matéria e avance uma etapa da sua jornada.</p>
           <div class="hero-actions">
-            <button class="hero-primary" data-action="focus">▶ Começar</button>
-            <button class="hero-secondary" data-view-target="today">Ver meu dia →</button>
+            <button class="hero-primary" data-action="focus">▶ Começar foco</button>
+            <button class="hero-secondary" data-view-target="today">Ver plano →</button>
           </div>
         </div>
-        <div class="hero-ring" id="heroRing"><div><strong id="heroPct">0%</strong><span>meta do dia</span></div></div>
+        <div class="hero-orbit" aria-hidden="true">
+          <div class="orbit orbit-a"></div>
+          <div class="orbit orbit-b"></div>
+          <div class="orb-core"><span>✦</span></div>
+          <div class="orbit-dot dot-a"></div>
+          <div class="orbit-dot dot-b"></div>
+        </div>
+        <div class="hero-progress">
+          <span>meta do dia</span>
+          <strong id="heroPct">0%</strong>
+          <div class="hero-progress-track"><i id="heroProgressBar"></i></div>
+          <small id="heroGoalCaption">0min de estudo</small>
+        </div>
       </div>
 
       <div class="rpg-strip">
-        <article class="rpg-card"><div class="rpg-card-icon">✦</div><div><span>RANK</span><strong id="rankName">Aprendiz</strong><small id="rankText">Continue acumulando XP</small></div></article>
-        <article class="rpg-card xp-card"><div class="xp-head"><span>XP</span><b id="xpText">0 / 500 XP</b></div><div class="xp-track"><span id="xpBar"></span></div><small id="xpNext">até o próximo nível</small></article>
-        <article class="rpg-card mana-card"><div class="rpg-card-icon">◈</div><div><span>MANA</span><strong id="manaText">100%</strong><small>energia para estudar</small></div></article>
-        <article class="rpg-card quest-card"><div class="rpg-card-icon">⚔</div><div><span>MISSÃO</span><strong id="questText">0 / 2h</strong><small id="questSub">complete a meta</small></div></article>
+        <article class="rpg-card rank-card">
+          <div class="rpg-card-icon">♜</div>
+          <div><span>RANK</span><strong id="rankName">Aprendiz</strong><small id="rankText">Continue acumulando XP</small></div>
+        </article>
+        <article class="rpg-card xp-card">
+          <div class="xp-head"><span>XP</span><b id="xpText">0 / 500 XP</b></div>
+          <div class="xp-track"><span id="xpBar"></span></div>
+          <small id="xpNext">até o próximo nível</small>
+        </article>
+        <article class="rpg-card mana-card">
+          <div class="rpg-card-icon">◈</div>
+          <div><span>MANA</span><strong id="manaText">100%</strong><small>energia para estudar</small></div>
+        </article>
+        <article class="rpg-card quest-card">
+          <div class="rpg-card-icon">⚔</div>
+          <div><span>MISSÃO</span><strong id="questText">0 / 2h</strong><small id="questSub">complete a meta</small></div>
+        </article>
+      </div>
+
+      <div class="adventure-layout">
+        <section class="card journey-card">
+          <div class="section-head journey-head">
+            <div>
+              <span class="eyebrow">MAPA DA JORNADA</span>
+              <h3>Seu caminho pelo edital</h3>
+            </div>
+            <span class="journey-legend"><i></i> progresso</span>
+          </div>
+          <div class="journey-map">
+            <div class="map-path" aria-hidden="true"></div>
+            <div class="map-glow map-glow-a" aria-hidden="true"></div>
+            <div class="map-glow map-glow-b" aria-hidden="true"></div>
+            <div class="journey-gate">
+              <div class="gate-rune">✦</div>
+              <strong>PORTAL</strong>
+              <small>seu edital</small>
+            </div>
+            <div class="journey-nodes" id="subjectCards"></div>
+            <div class="journey-treasure" aria-hidden="true"><span>◆</span></div>
+          </div>
+        </section>
+
+        <section class="card continue-card">
+          <div class="section-head">
+            <div><span class="eyebrow">PRÓXIMO PASSO</span><h3>Onde continuar</h3></div>
+            <button class="text-btn" data-view-target="today">Ver dia</button>
+          </div>
+          <div id="nextStudy"></div>
+          <div class="continue-footer">
+            <div class="mini-orb">✦</div>
+            <div><strong>Uma sessão de cada vez.</strong><small>Seu ritmo importa mais que a pressa.</small></div>
+          </div>
+        </section>
       </div>
 
       <div class="metric-grid">
@@ -86,36 +149,32 @@
         <article class="metric"><div class="metric-icon purple">🔥</div><div><span>Constância</span><strong id="metricStreak">0 dias</strong><small>dias seguidos</small></div></article>
       </div>
 
-      <div class="grid-2">
-        <section class="card">
-          <div class="section-head"><div><span class="eyebrow">PRÓXIMO PASSO</span><h3>Próximo estudo</h3></div><button class="text-btn" data-view-target="today">Ver dia</button></div>
-          <div id="nextStudy"></div>
-        </section>
-        <section class="card">
-          <div class="section-head"><div><span class="eyebrow">REVISÕES</span><h3>Fila de revisão</h3></div><button class="text-btn" data-view-target="reviews">Abrir fila</button></div>
+      <div class="home-grid">
+        <section class="card review-home-card">
+          <div class="section-head"><div><span class="eyebrow">MEMÓRIA</span><h3>O que pede uma revisão</h3></div><button class="text-btn" data-view-target="reviews">Abrir fila</button></div>
           <div id="reviewPreview"></div>
         </section>
-      </div>
 
-      <div class="grid-2">
-        <section class="card">
-          <div class="section-head"><div><span class="eyebrow">RITMO</span><h3>Últimos 7 dias</h3></div><span class="section-note" id="weekTotal">0h</span></div>
+        <section class="card rhythm-card">
+          <div class="section-head"><div><span class="eyebrow">RITMO</span><h3>Seus últimos dias</h3></div><span class="section-note" id="weekTotal">0h</span></div>
           <div class="week-chart" id="weekChart"></div>
         </section>
+      </div>
+
+      <div class="home-grid">
         <section class="card">
-          <div class="section-head"><div><span class="eyebrow">PONTOS DE ATENÇÃO</span><h3>Pontos fracos</h3></div><button class="text-btn" data-view-target="performance">Analisar</button></div>
+          <div class="section-head"><div><span class="eyebrow">PONTOS DE ATENÇÃO</span><h3>Onde insistir</h3></div><button class="text-btn" data-view-target="performance">Analisar</button></div>
           <div id="attentionList"></div>
+        </section>
+        <section class="card quest-panel">
+          <div class="section-head"><div><span class="eyebrow">MISSÕES</span><h3>Desafios de hoje</h3></div><span class="quest-gem">◆</span></div>
+          <div id="questBoard"></div>
         </section>
       </div>
 
-      <div class="grid-2">
-        <section class="card quest-panel"><div class="section-head"><div><span class="eyebrow">QUEST BOARD</span><h3>Missões do dia</h3></div><span class="quest-gem">◆</span></div><div id="questBoard"></div></section>
-        <section class="card quest-panel"><div class="section-head"><div><span class="eyebrow">CONQUISTAS</span><h3>Relíquias desbloqueadas</h3></div><button class="text-btn" data-view-target="performance">Ver progresso</button></div><div id="achievementBoard" class="achievement-board"></div></section>
-      </div>
-
-      <section class="card">
-        <div class="section-head"><div><span class="eyebrow">MEU EDITAL</span><h3>Suas matérias</h3></div><button class="text-btn" data-view-target="edital">Abrir edital</button></div>
-        <div class="subject-cards" id="subjectCards"></div>
+      <section class="card relic-card">
+        <div class="section-head"><div><span class="eyebrow">RELÍQUIAS</span><h3>Conquistas</h3></div><button class="text-btn" data-view-target="performance">Ver progresso</button></div>
+        <div id="achievementBoard" class="achievement-board"></div>
       </section>
     </section>
 
